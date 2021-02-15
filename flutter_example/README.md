@@ -1,16 +1,34 @@
-# flutter_example
+# flutter 보면서 배운 것들
 
-the first flutter test
+Widget : Android 의 View 와 비슷한 개념
+ - 차이점
+   * immutable
+   * 변해야 하기 전까지 존재함 (android 의 life cycle 과 같지 않음)
 
-## Getting Started
+- StatelessWidget : 아무것도 변하지 않을 때 사용하기 좋음 (ex. logo image)
+- StatefulWidget : 통신, UI에 따라 변해야 할 때 사용하기 좋음
+  -> 사실은 StatelessWidget 와 동작이 같으나 안에 있는 State 객체가 변함
 
-This project is a starting point for a Flutter application.
+layout은 어디에 적나?
+  - 따로 xml 없음
+  - widget tree 라고 하는 양식을 따라 작성
+  ex)
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample App"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.only(left: 20.0, right: 30.0),
+          ),
+          onPressed: () {},
+          child: Text('Hello'),
+        ),
+      ),
+    );
+  }
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Scaffold : default app 화면
