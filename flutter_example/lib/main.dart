@@ -4,108 +4,62 @@ import 'package:english_words/english_words.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  Widget titleSection = Container(
+    padding: const EdgeInsets.all(32),
+    child: Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text(
+                  'Oeschinen Lake Campground',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(
+                'Kandersteg, Switzerland',
+                style: TextStyle(color: Colors.grey[500]),
+              ),
+            ],
+          ),
+        ),
+        Icon(
+          Icons.star,
+          color: Colors.red[500],
+        ),
+        Text('41')
+      ],
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startup Name Generator',
-      theme: ThemeData(
-        primaryColor: Colors.white
+      title: 'Flutter Layout Demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter Layout Demo'),
+        ),
+        body: Column(
+          children: [
+            titleSection,
+          ],
+        ),
       ),
-      // Scaffold : default app 화면
-      home: RandomWords(),
     );
   }
+
+  Column _buildButtonColumn(Color color, IconData icon, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+    );
+  }
+
+
 }
-
-class RandomWords extends StatefulWidget {
-  @override
-  _RandomWordsState createState() => _RandomWordsState();
-}
-
-class _RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _saved = Set<WordPair>();
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Startup Name Generator'),
-        actions: [
-          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved)
-        ],
-      ),
-      body: _buildSuggestions(),
-    );
-  }
-
-  void _pushSaved() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-          builder: (BuildContext context) {
-            final tiles = _saved.map(
-                (WordPair pair) {
-                  return ListTile(
-                    title: Text(
-                      pair.asPascalCase,
-                      style: _biggerFont,
-                    ),
-                  );
-                },
-            );
-            final divided = ListTile.divideTiles(
-              context: context,
-              tiles: tiles,
-            ).toList();
-
-            return Scaffold(
-              appBar: AppBar(
-                title: Text('Saved Suggestions'),
-              ),
-              body: ListView(children: divided),
-            );
-          }
-      )
-    );
-  }
-
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: EdgeInsets.all(16.0),
-        itemBuilder: (context, i) {
-          if (i.isOdd) return Divider();
-
-          final index = i ~/ 2;
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10));
-          }
-          return _buildRow(_suggestions[index]);
-        });
-  }
-
-  Widget _buildRow(WordPair pair) {
-    final alreadySaved = _saved.contains(pair);
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ),
-      trailing: Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-      ),
-      onTap : () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
-      }
-    );
-  }
-}
-
-
