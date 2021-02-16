@@ -1,5 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'package:flutter_example/page/chart_page.dart';
+import 'package:flutter_example/page/main_page.dart';
+import 'package:flutter_example/page/search_page.dart';
+import 'package:flutter_example/page/settings_page.dart';
+import 'package:flutter_example/widget/tabbar_cupertino_widget.dart';
+import 'package:flutter_example/widget/tabbar_material_widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,105 +13,52 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startup Name Generator',
-      theme: ThemeData(
-        primaryColor: Colors.white
-      ),
-      // Scaffold : default app 화면
-      home: RandomWords(),
+        title: 'Flutter Layout Demo',
+        home: PageChanger()
     );
   }
 }
 
-class RandomWords extends StatefulWidget {
+class PageChanger extends StatefulWidget {
   @override
-  _RandomWordsState createState() => _RandomWordsState();
+  _PageChangerState createState() => _PageChangerState();
 }
 
-class _RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _saved = Set<WordPair>();
-  final _biggerFont = const TextStyle(fontSize: 18.0);
+class _PageChangerState extends State<PageChanger> {
+
+  int index = 0;
+
+  final pages = <Widget>[
+    MainPage(),
+    SearchPage(),
+    ChartPage(),
+    SettingsPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Startup Name Generator'),
-        actions: [
-          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved)
-        ],
+      extendBody: true, // floating button 뒤로 contents 보이게 함
+      body: pages[index],
+      bottomNavigationBar: TabBarCupertinoWidget(
+        index : index,
+        onChangedTab : onChangedTab,
       ),
-      body: _buildSuggestions(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.play_arrow),
+        onPressed: () => print('test'),
+        elevation: 0,
+        highlightElevation: 0,
+      ),
+      floatingActionButtonLocation:
+      FloatingActionButtonLocation.centerDocked,
     );
   }
 
-  void _pushSaved() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-          builder: (BuildContext context) {
-            final tiles = _saved.map(
-                (WordPair pair) {
-                  return ListTile(
-                    title: Text(
-                      pair.asPascalCase,
-                      style: _biggerFont,
-                    ),
-                  );
-                },
-            );
-            final divided = ListTile.divideTiles(
-              context: context,
-              tiles: tiles,
-            ).toList();
-
-            return Scaffold(
-              appBar: AppBar(
-                title: Text('Saved Suggestions'),
-              ),
-              body: ListView(children: divided),
-            );
-          }
-      )
-    );
-  }
-
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: EdgeInsets.all(16.0),
-        itemBuilder: (context, i) {
-          if (i.isOdd) return Divider();
-
-          final index = i ~/ 2;
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10));
-          }
-          return _buildRow(_suggestions[index]);
-        });
-  }
-
-  Widget _buildRow(WordPair pair) {
-    final alreadySaved = _saved.contains(pair);
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ),
-      trailing: Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-      ),
-      onTap : () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
-      }
-    );
+  void onChangedTab(int index){
+    setState(() {
+      this.index = index;
+    });
   }
 }
-
 
