@@ -14,6 +14,21 @@ void main() {
       '/': (context) => FirstScreen(),
       // When navigating to the "/second" route, build the SecondScreen widget.
       '/second': (context) => SecondScreen(),
+      // 1. args 뽑아내는 방법
+      ExtractArgumentsScreen.routeName: (context) => ExtractArgumentsScreen(),
+    },
+    // 2. 위의 방식처럼 뽑아내지 않는 방법
+    onGenerateRoute: (settings) {
+      if (settings.name == PassArgumentsScreen.routeName) {
+        final ScreenArguments args = settings.arguments;
+
+        return MaterialPageRoute(builder: (context) {
+          return PassArgumentsScreen(title: args.title, msg: args.msg);
+        });
+        // ignore: missing_return
+      } else {
+        return null;
+      }
     },
   ));
 }
@@ -26,14 +41,41 @@ class FirstScreen extends StatelessWidget {
         middle: Text('title'),
       ),
       child: Center(
-        child: ElevatedButton(
-          child: Text('Launch screen'),
-          onPressed: () {
-            // Navigate to the second screen using a named route.
-            Navigator.pushNamed(context, '/second');
-          },
-        ),
-      ),
+          child: ListView(
+        children: [
+          ElevatedButton(
+            child: Text('Launch screen'),
+            onPressed: () {
+              // Navigate to the second screen using a named route.
+              Navigator.pushNamed(context, '/second');
+            },
+          ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  ExtractArgumentsScreen.routeName,
+                  arguments: ScreenArguments(
+                    'Passing Arguments Screen',
+                    'new msg is extracted in the build method.',
+                  ),
+                );
+              },
+              child: Text("With args")),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  PassArgumentsScreen.routeName,
+                  arguments: ScreenArguments(
+                    'Passing Arguments Screen',
+                    'new msg is extracted in the build method.',
+                  ),
+                );
+              },
+              child: Text("Testing")),
+        ],
+      )),
     );
   }
 }
