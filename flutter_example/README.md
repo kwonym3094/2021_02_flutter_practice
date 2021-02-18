@@ -67,3 +67,17 @@
  
 12. 플러터에서는 screen 이나 page 를 route 라고 부름
 13. 이 route 간 이동할 수 있게 만들어 주는 것 -> navigator
+
+14. Dart는 public, private, protected 키워드가 없다 (대신 이름을 _ 언더바로 표현하면 private >> python 처럼)
+15. String Interpolation 은 ${expression}과 같은 방식으로 사용
+16. 기본적으로 Dart는 모든 공용 인스턴스 변수에 대해 암시적 getter 및 setter를 제공. 
+ - 읽기 전용 또는 쓰기 전용 변수를 적용하거나 값을 계산 또는 확인하거나 다른 곳에서 값을 업데이트하려는 경우가 아니면 자체 getter 또는 setter를 정의 할 필요가 없음.
+17. class constructor 생성할 시 명명된 변수는 {} 안에 넣는다 
+18. 팩토리 패턴 간단하게 만들 수 있음
+19. lowerCamelCase를 사용하는 것을 권장함 (enum 포함)
+20. factory 생성자 만들때는 factory 키워드 사용하기
+21. Dart는 모든 클래스가 인터페이스를 정의하기 때문에 interface 키워드가 없음
+22. 함수
+ - 인수로 전달 가능
+ - 변수에 할당 가능
+ - 상수 값으로 사용할 수 있는 이름없는 함수 만들 수 있음(= 람다식)
