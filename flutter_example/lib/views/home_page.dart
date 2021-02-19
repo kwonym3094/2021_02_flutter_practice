@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/anim/page_slide.dart';
-import 'package:flutter_example/page/search_page.dart';
-import 'package:flutter_example/page/settings_page.dart';
-import 'package:flutter_example/page/workout_list_page.dart';
+import 'package:flutter_example/views/search_page.dart';
+import 'package:flutter_example/views/settings_page.dart';
+import 'package:flutter_example/views/workout_list_page.dart';
 import 'package:flutter_example/widget/tabbar_cupertino_widget.dart';
 
 import 'chart_page.dart';

@@ -39,7 +39,7 @@ class SlidingCard extends StatelessWidget {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
                 child: Image.asset(
                   //<-- main image
-                  'images/$assetName',
+                  'assets/images/$assetName',
                   height: MediaQuery.of(context).size.height * 0.25,
                   // width: MediaQuery.of(context).size.width,
                   fit: BoxFit.none,
