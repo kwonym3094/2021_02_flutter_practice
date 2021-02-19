@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  firebase_auth: ^0.20.1
+  google_sign_in: ^4.5.9
 
   english_words: ^3.1.5
 
@@ -51,7 +53,7 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - images/lake.jpg
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -64,6 +66,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: OverpassRegular
+      fonts:
+        - asset: assets/fonts/overpass_regular.otf
   # fonts:
   #   - family: Schyler
   #     fonts:
