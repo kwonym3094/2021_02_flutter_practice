@@ -54,7 +54,7 @@ class _SignInState extends State<SignIn> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't have account? ", style: mediumTestStyle(),),
+                  Text("Don't have account? ", style: mediumTextStyle(),),
                   GestureDetector(
                     onTap: () => {
                       widget.toggle()
@@ -78,7 +78,7 @@ TextStyle simpleTestStyle() {
   return TextStyle(color: Colors.white, fontSize: 16);
 }
 
-TextStyle mediumTestStyle() {
+TextStyle mediumTextStyle() {
   return TextStyle(color: Colors.white, fontSize: 17);
 }
 

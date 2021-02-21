@@ -34,17 +34,19 @@ class _SignUpState extends State<SignUp> {
   // loading option
   signMeUp() {
     if (formKey.currentState.validate()) {
+
+      Map<String,Object> userInfoMap = {
+        "name" : userNameTextEditingController.text,
+        "email" : emailTextEditingController.text
+      };
+
       setState(() {
         isLoading = true;
       });
 
       authMethods.signUpWithEmailAndPassword(emailTextEditingController.text, passwordTextEditingController.text).then((val) {
-        print('${val.userId}');
+        print('${val}');
 
-        Map<String,Object> userInfoMap = {
-          "name" : userNameTextEditingController.text,
-          "email" : emailTextEditingController.text
-        };
 
         databaseMethods.uploadUserInfo(userInfoMap);
 
@@ -165,7 +167,7 @@ class _SignUpState extends State<SignUp> {
                       children: [
                         Text(
                           "Already have an account? ",
-                          style: mediumTestStyle(),
+                          style: mediumTextStyle(),
                         ),
                         GestureDetector(
                           onTap: (){
