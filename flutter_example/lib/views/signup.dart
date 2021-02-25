@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/helper/helperfunctions.dart';
 import 'package:flutter_example/services/auth.dart';
 import 'package:flutter_example/services/database.dart';
 import 'package:flutter_example/views/signin.dart';
@@ -45,7 +46,11 @@ class _SignUpState extends State<SignUp> {
       });
 
       authMethods.signUpWithEmailAndPassword(emailTextEditingController.text, passwordTextEditingController.text).then((val) {
-        print('${val}');
+
+
+        HelperFunctions.saveLogIn(true);
+        HelperFunctions.saveUserName(userNameTextEditingController.text);
+        HelperFunctions.saveUserEmail(emailTextEditingController.text);
 
 
         databaseMethods.uploadUserInfo(userInfoMap);

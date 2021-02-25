@@ -16,6 +16,7 @@ class AuthMethods{
       return _userFromFirebaseUser(firebaseUser);
     } catch(e) {
       print(e.toString());
+      return null;
     }
   }
 
@@ -26,6 +27,7 @@ class AuthMethods{
       return _userFromFirebaseUser(firebaseUser);
     }catch(e){
       print(e.toString());
+      return null;
     }
   }
 

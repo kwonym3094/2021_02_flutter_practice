@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_example/helper/helperfunctions.dart';
+import 'package:flutter_example/views/chatroom_screen.dart';
 
 import 'helper/authenticate.dart';
 
@@ -9,7 +11,29 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  bool isLoggedIn = false;
+
+  @override
+  void initState() {
+    getLogInState();
+    super.initState();
+  }
+
+  getLogInState() async {
+    await HelperFunctions.getLoggedIn().then((value) {
+      setState(() {
+        isLoggedIn = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +45,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // Scaffold : default app 화면
-      home: Authenticate(),
+      home:  isLoggedIn ? ChatRoom() : Authenticate(),
     );
   }
 }

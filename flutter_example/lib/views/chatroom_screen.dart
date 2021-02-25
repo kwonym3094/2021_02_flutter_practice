@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_example/helper/authenticate.dart';
+import 'package:flutter_example/helper/constants.dart';
+import 'package:flutter_example/helper/helperfunctions.dart';
 import 'package:flutter_example/services/auth.dart';
 import 'package:flutter_example/views/search.dart';
 
@@ -11,6 +13,18 @@ class ChatRoom extends StatefulWidget {
 class _ChatRoomState extends State<ChatRoom> {
 
   AuthMethods authMethods = new AuthMethods();
+
+  @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
+
+  getUserInfo() async {
+    Constants.myName = await HelperFunctions.getUserName();
+    setState(() {});
+  }
+
 
   @override
   Widget build(BuildContext context) {
