@@ -39,7 +39,6 @@ class _SignInState extends State<SignIn> {
             SizedBox(height: 8,),
             GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SpecPage()));
                 },
                 child: MainButton(context, "Sign In", Colors.white, Colors.blue)),
             SizedBox(height: 8,),
