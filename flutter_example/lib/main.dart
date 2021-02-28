@@ -10,13 +10,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Layout Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        home: Homepage()
+        // home: Homepage()
+        home:Homepage()
     );
   }
 }
+
 
 
 
