@@ -33,6 +33,7 @@ class _CalendarSampleState extends State<CalendarSample> {
 
 SfCalendar _getHeatmapCalendar() {
   return SfCalendar(
+    headerStyle: CalendarHeaderStyle(),
     view: CalendarView.month,
     monthCellBuilder: _monthCellBuilder,
     showDatePickerButton: true,
@@ -43,16 +44,7 @@ SfCalendar _getHeatmapCalendar() {
   );
 }
 
-/// Returns the cell  text color based on the cell background color
 Color _getCellTextColor(Color backgroundColor) {
-  if (backgroundColor == _kDarkGreen || backgroundColor == _kDarkerGreen) {
-    return Colors.white;
-  }
-
-  return Colors.black;
-}
-
-Color _getCellTxtColor(Color backgroundColor) {
   if (backgroundColor == _kDarkerGreen || backgroundColor == _kDarkGreen) {
     return Colors.white;
   }
@@ -72,7 +64,7 @@ Widget _monthCellBuilder(BuildContext context, MonthCellDetails details){
     child: Center(
       child: Text(
         details.date.day.toString(),
-        style: TextStyle(color: _getCellTxtColor(backgroundColor)),
+        style: TextStyle(color: _getCellTextColor(backgroundColor)),
       ),
     ),
   );
