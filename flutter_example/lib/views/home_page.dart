@@ -29,9 +29,10 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
+      appBar: CupertinoNavigationBar(
+        border: Border.all(width: 0.0, color: CupertinoColors.systemGrey3),
+      ),
       extendBody: true, // floating button 뒤로 contents 보이게 함
       body: pages[index],
       bottomNavigationBar: TabBarCupertinoWidget(
