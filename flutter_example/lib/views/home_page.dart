@@ -48,7 +48,7 @@ class _HomepageState extends State<Homepage> {
       floatingActionButtonLocation:
       FloatingActionButtonLocation.centerDocked,
         // resizeToAvoidBottomPadding : floating button 이 text 입력시 위로 올라오는 것 방지
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
     );
   }
 
