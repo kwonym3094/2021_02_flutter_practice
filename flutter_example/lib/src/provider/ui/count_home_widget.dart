@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/src/provider/components/view_count_widget.dart';
 import 'package:flutter_example/src/provider/provider/count_provider.dart';
 import 'package:provider/provider.dart';
 
 class CountHomeWidget extends StatelessWidget {
+  CountProvider _countProvider;
+
   @override
   Widget build(BuildContext context) {
     print("CountHome Build");
@@ -12,16 +15,22 @@ class CountHomeWidget extends StatelessWidget {
     * builder는 context, provider, child 3개를 받음
     * 부모에서도 add 를 사용하니까 등록해줘야함
     * */
-    return Center(
-      child: Consumer<CountProvider>(
-        builder: (context, provider, child){
-          return Text(
-            provider.count.toString(),
-            style: TextStyle(
-              fontSize: 80,
-            ),
-          );
-        },
+
+    _countProvider = Provider.of<CountProvider>(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Count Provider'),
+      ),
+      body: ViewCountWidget(),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          IconButton(
+              icon: Icon(Icons.add), onPressed: () => _countProvider.add()),
+          IconButton(
+              icon: Icon(Icons.remove),
+              onPressed: () => _countProvider.remove()),
+        ],
       ),
     );
   }
