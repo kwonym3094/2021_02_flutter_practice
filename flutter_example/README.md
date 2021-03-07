@@ -3,7 +3,7 @@
  - **Lo**gic
  - **c**omponent
  - UI 부분은 비즈니스 로직과 상관없이 받은 데이터만 보여주면 된다는 아이디어
- - ![bloc pattern](https://www.google.com/url?sa=i&url=https%3A%2F%2Feveryday.codes%2Fmobile%2Fbloc-in-flutter-implement-clean-flux-like-architecture%2F&psig=AOvVaw2UtZN8QTmHEhU-Tb_hFmEz&ust=1615172380367000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDhyZKYne8CFQAAAAAdAAAAABAD)
+ - ![bloc pattern](https://i0.wp.com/everyday.codes/wp-content/uploads/2020/06/bloc-splash.png?fit=925%2C455&ssl=1)
  - UI 위젯에서는 이벤트만 넘겨주고 모든 변경은 Bloc 에서 처리
  - bloc을 구독하고 있는 UI에 Stream 으로 넘겨줌
  
