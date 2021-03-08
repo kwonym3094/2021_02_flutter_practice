@@ -16,4 +16,6 @@ class MovieProvider extends ChangeNotifier {
     _movies = listMovies;
     notifyListeners();
   }
+
+  String get postUrl => 'https://image.tmdb.org/t/p/w500/${this.postUrl}';
 }
