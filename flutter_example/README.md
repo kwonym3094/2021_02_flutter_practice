@@ -25,3 +25,8 @@
  - 이해하고 사용하는데 진입장벽이 큼
  
  => 이를 해결하기 위해 나온것이 provider
+ 
+ 
+ ## GetxController vs GetService
+  - GetxController는 permanent: true 인자를 넣어 controller가 메모리에 계속 남아있게 할 수 있고
+  - GetService역시 계속 남아있게 할 수 있지만, 필요한 경우 Get.reset()으로 메모리의 모든 instance를 내릴 수 있음 (모든! 인스턴스를 내리니 사용에 주의)
