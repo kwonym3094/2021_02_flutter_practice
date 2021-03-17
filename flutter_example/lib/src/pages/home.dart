@@ -6,7 +6,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Text("Home"),
+        child: Text('Home'),
       ),
     );
   }

@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/src/app.dart';
 import 'package:flutter_example/src/binding/init_binding.dart';
-import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,15 +15,14 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: "Youtube Clone Coding",
       theme: ThemeData(
-          primaryColor: Colors.white,
-          accentColor: Colors.black,
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity),
+        primaryColor: Colors.white,
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      getPages: [
-        GetPage(name: '/', page: () => App()),
-      ],
       initialBinding: InitBinding(),
+      getPages: [GetPage(name: '/', page: () => App())],
     );
   }
 }
