@@ -1,21 +1,32 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_example/views/signin.dart';
+import 'package:flutter_example/src/app.dart';
+import 'package:flutter_example/src/binding/init_binding.dart';
+import 'package:flutter_example/src/components/youtube_detail.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Startup Name Generator',
+    return GetMaterialApp(
+      title: "Youtube Clone Coding",
       theme: ThemeData(
-        primaryColor: Color(0xff154C9E),
-        scaffoldBackgroundColor: Color(0xff1F1F1F),
+        primaryColor: Colors.white,
+        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // Scaffold : default app 화면
-      home: SignIn(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      initialBinding: InitBinding(),
+      getPages: [
+        GetPage(name: '/', page: () => App()),
+        GetPage(name: '/detail/:videoId', page: () => YoutubeDetail()),
+      ],
     );
   }
 }
-
