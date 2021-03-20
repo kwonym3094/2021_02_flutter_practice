@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/src/app.dart';
 import 'package:flutter_example/src/binding/init_binding.dart';
+import 'package:flutter_example/src/components/youtube_detail.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -22,7 +23,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       initialBinding: InitBinding(),
-      getPages: [GetPage(name: '/', page: () => App())],
+      getPages: [
+        GetPage(name: '/', page: () => App()),
+        GetPage(name: '/detail/:videoId', page: () => YoutubeDetail()),
+      ],
     );
   }
 }

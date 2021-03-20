@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class YoutubeBottomSheet extends StatelessWidget {
@@ -38,9 +38,9 @@ class YoutubeBottomSheet extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 15,
+            height: 15,
           ),
-          Text("$label"),
+          Text("$label")
         ],
       ),
     );
@@ -64,19 +64,19 @@ class YoutubeBottomSheet extends StatelessWidget {
             _itemButton(
                 icon: "upload",
                 iconSize: 17,
-                label: "동영상업로드",
+                label: "동영상 업로드",
                 onTap: () {
-                  print('동영상 업로드 기능');
+                  print("동영상 업로드 기능");
                 }),
             SizedBox(
               height: 7,
             ),
             _itemButton(
                 icon: "broadcast",
-                iconSize: 25,
+                iconSize: 24,
                 label: "실시간 스트리밍 시작",
                 onTap: () {
-                  print('실시간 스트리밍 시작 기능');
+                  print("실시간 스트리밍 시작 가능");
                 }),
           ],
         ),

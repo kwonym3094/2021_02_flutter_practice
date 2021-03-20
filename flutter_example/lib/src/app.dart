@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/src/controller/app_controller.dart';
-import 'package:flutter_example/src/pages/explorer.dart';
-import 'package:flutter_example/src/pages/library.dart';
-import 'package:flutter_example/src/pages/subscribe.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import 'cotroller/app_controller.dart';
+import 'pages/explorer.dart';
 import 'pages/home.dart';
+import 'pages/library.dart';
+import 'pages/subscribe.dart';
 
 class App extends GetView<AppController> {
   @override
