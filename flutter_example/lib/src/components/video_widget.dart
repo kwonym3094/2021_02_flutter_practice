@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/src/models/video.dart';
+import 'package:intl/intl.dart'; // data formatting 을 위한 라이브러리
 
 class VideoWidget extends StatelessWidget {
+  final Video video;
+
+  const VideoWidget({Key key, this.video}) : super(key: key);
+
   Widget _thumbnail() {
     return Container(
       height: 250,
       color: Colors.grey.withOpacity(0.5),
+      child: Image.network(
+        video.snippet.thumbnails.medium.url,
+        fit: BoxFit.fitWidth,
+      ),
     );
   }
 
@@ -31,7 +41,7 @@ class VideoWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        "개남 유튜브 다시 보기 개남 유튜브 다시 보기 개남 유튜브 다시 보기 개남 유튜브 다시 보기",
+                        video.snippet.title,
                         maxLines: 2,
                       ),
                     ),
@@ -46,7 +56,7 @@ class VideoWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "개발하는남자",
+                      video.snippet.channelTitle,
                       style: TextStyle(
                           fontSize: 12, color: Colors.black.withOpacity(0.8)),
                     ),
@@ -58,7 +68,8 @@ class VideoWidget extends StatelessWidget {
                     ),
                     Text(" . "),
                     Text(
-                      "2021-03-20",
+                      DateFormat("yyyy-MM-dd")
+                          .format(video.snippet.publishTime),
                       style: TextStyle(
                           fontSize: 12, color: Colors.black.withOpacity(0.6)),
                     ),
