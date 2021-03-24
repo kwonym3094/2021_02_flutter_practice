@@ -15,7 +15,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
   int index = 0;
 
   final pages = <Widget>[
@@ -36,23 +35,23 @@ class _HomepageState extends State<Homepage> {
       extendBody: true, // floating button 뒤로 contents 보이게 함
       body: pages[index],
       bottomNavigationBar: TabBarCupertinoWidget(
-        index : index,
-        onChangedTab : onChangedTab,
+        index: index,
+        onChangedTab: onChangedTab,
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.play_arrow),
-        onPressed: () => Navigator.of(context).push<void>(createRoute(MyListPage())),
+        child: Icon(Icons.directions_run_rounded),
+        onPressed: () =>
+            Navigator.of(context).push<void>(createRoute(MyListPage())),
         elevation: 0,
         highlightElevation: 0,
       ),
-      floatingActionButtonLocation:
-      FloatingActionButtonLocation.centerDocked,
-        // resizeToAvoidBottomPadding : floating button 이 text 입력시 위로 올라오는 것 방지
-        resizeToAvoidBottomInset: false,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // resizeToAvoidBottomPadding : floating button 이 text 입력시 위로 올라오는 것 방지
+      resizeToAvoidBottomInset: false,
     );
   }
 
-  void onChangedTab(int index){
+  void onChangedTab(int index) {
     setState(() {
       this.index = index;
     });

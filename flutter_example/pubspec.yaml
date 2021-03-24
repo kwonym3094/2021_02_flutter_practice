@@ -26,22 +26,15 @@ dependencies:
   firebase_auth: ^0.20.1
   google_sign_in: ^4.5.9
 
-<<<<<<< HEAD
-  get: ^3.26.0
-  flutter_svg: ^0.19.3
-  intl: ^0.17.0
-  youtube_player_flutter: ^6.1.0+7
-  shared_preferences: ^2.0.4
-  cached_network_image: ^2.5.1
-=======
   table_calendar: ^2.3.3
+
+  get: ^3.26.0
 
   syncfusion_flutter_calendar: ^18.4.44
   flappy_search_bar : ^1.7.2
 
   spider: ^1.1.1
 
->>>>>>> 9ff788d0be118d09f775ec905fd39e936667139a
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
@@ -61,10 +54,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
-  assets:
-    - assets/images/
-    - assets/svg/icons/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
