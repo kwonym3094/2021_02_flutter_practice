@@ -1,32 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_example/src/pages/controller/count_controller_with_getx.dart';
-import 'package:flutter_example/src/pages/controller/count_controller_with_provider.dart';
-import 'package:flutter_example/src/pages/state_management/with_getx.dart';
-import 'package:flutter_example/src/pages/state_management/with_provider.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 class SimpleStateManagePage extends StatelessWidget {
+  // 1-1. 클래스가 생성될때 instance 화 해줘도 상관없음
+  // CountControllerWithGetX _controller = Get.put(CountControllerWithGetX()); // 장점 : find 할 필요가 없음
+
   @override
   Widget build(BuildContext context) {
-    Get.put(
-        CountControllerWithGetX()); // 인스턴스로 만들어 주는 것 << 이렇게 정의하고 나면 어디서든 사용이 가능함
+    Get.put(CountControllerWithGetX()); // 1. instance 화
     return Scaffold(
       appBar: AppBar(
-        title: Text('단순상태관리'),
+        title: Text("단순상태관리"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: WithGetX(),
+            GetBuilder<CountControllerWithGetX>(
+              // 2. builder 생성
+              id: "first",
+              builder: (controller) {
+                return Text(
+                  "${controller.count}",
+                  style: TextStyle(fontSize: 50),
+                );
+              },
             ),
-            Expanded(
-              child: ChangeNotifierProvider<CountControllerWithProvider>(
-                create: (_) => CountControllerWithProvider(),
-                child: WithProvider(),
+            RaisedButton(
+              child: Text(
+                "+",
+                style: TextStyle(fontSize: 30),
               ),
+              onPressed: () {
+                Get.find<CountControllerWithGetX>()
+                    .increase("first"); // 3. 찾아서 사용
+              },
+            ),
+            GetBuilder<CountControllerWithGetX>(
+              // 2. builder 생성
+              id: "second",
+              builder: (controller) {
+                return Text(
+                  "${controller.count}",
+                  style: TextStyle(fontSize: 50),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text(
+                "+",
+                style: TextStyle(fontSize: 30),
+              ),
+              onPressed: () {
+                Get.find<CountControllerWithGetX>()
+                    .increase("second"); // 3. 찾아서 사용
+              },
             ),
           ],
         ),

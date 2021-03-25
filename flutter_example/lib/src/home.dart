@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_example/src/pages/dependencies/dependency_manage_page.dart';
 import 'package:flutter_example/src/pages/normal/first.dart';
 import 'package:flutter_example/src/pages/state_management/reactive_state_manage_page.dart';
 import 'package:flutter_example/src/pages/state_management/simple_state_manage_page.dart';
@@ -64,30 +63,11 @@ class Home extends StatelessWidget {
             //  -
             RaisedButton(
               child: Text("단순상태관리"),
-              onPressed: () {
-                Get.to(SimpleStateManagePage()); // 하나만
-                // Get.toNamed("/user/28357?name=개남&age=22"); // 여러개 : 업데이트 이후 에러 발생
-              },
+              onPressed: () => Get.to(() => SimpleStateManagePage()),
             ),
             RaisedButton(
               child: Text("반응형상태관리"),
-              onPressed: () {
-                Get.to(ReactiveStateManagePage());
-              },
-            ),
-            // instance 화 하는 방법 정리
-            // (Get.put(CountControllerWithGetX()); << 처럼 instance로 만드는 방법)
-            RaisedButton(
-              child: Text("의존성 관리"),
-              onPressed: () {
-                Get.to(DependencyManagePage());
-              },
-            ),
-            RaisedButton(
-              child: Text("바인딩"),
-              onPressed: () {
-                Get.toNamed('/binding');
-              },
+              onPressed: () => Get.to(() => ReactiveStateManagePage()),
             ),
           ],
         ),

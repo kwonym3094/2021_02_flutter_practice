@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_example/src/home.dart';
 import 'package:flutter_example/src/pages/binding/binding.dart';
 import 'package:flutter_example/src/pages/binding/binding_page.dart';
-import 'package:flutter_example/src/pages/controller/count_controller_with_getx.dart';
-import 'package:flutter_example/src/pages/controller/dependency_controller.dart';
 import 'package:flutter_example/src/pages/named/first.dart';
 import 'package:flutter_example/src/pages/named/next.dart';
 import 'package:flutter_example/src/pages/named/second.dart';
@@ -60,18 +58,6 @@ class MyApp extends StatelessWidget {
             name: "/user/:uid",
             page: () => UserPage(),
             transition: Transition.cupertino),
-        // binding
-        GetPage(
-            name: "/binding",
-            page: () => BindingPage(),
-            transition: Transition.downToUp,
-            // 가장 앞단에 binding을 설정할 수 있음
-            binding: BindingPageBindng(), //BindingsBuilder(() {
-              // Get.put(
-                  // CountControllerWithGetX()); // 최초 라우트 설정할 때 해주면서 더 이상 신경쓰지 않아도 됨
-                  // 따로 관리 가능함 (BindingPage.dart 참고)
-            // }
-            )),
       ],
     );
   }
