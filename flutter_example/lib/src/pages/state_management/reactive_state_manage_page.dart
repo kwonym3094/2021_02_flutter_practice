@@ -60,14 +60,28 @@ class ReactiveStateManagePage extends StatelessWidget {
   }
 }
 
+enum NUM { FIRST, SECOND }
+
 class ReactiveController extends GetxController {
   RxInt count = 0.obs;
+  // 다양한 변수 타입 있는 것 알자
+  RxDouble _double = 0.0.obs;
+  RxString value = "".obs;
+  Rx<NUM> nums = NUM.FIRST.obs;
+
+  RxList<String> list = [""].obs; // 초기값 맞춰서 넣어줘야함!!
+
   increase() {
     count++;
+    // 리스트 업데이트 하는 방법!!!!
+    // list.addAll(item);
+    // list.add(item);
+    // list.addIf(condition, item)
   }
 
   putNumber(int number) {
     count(number);
+    nums(NUM.SECOND);
   }
 
   // 4. 다음 lifecycle은 해야할일이 있을 때만 사용하자!!!!
@@ -78,6 +92,13 @@ class ReactiveController extends GetxController {
     // once(listener, callback); // 처음 한번 수행
     // debounce(listener, callback); //
     // interval(listener, callback); // 일정 시간 간격으로 수행
+    ever(count, (_) => print("매번 호출"));
+    once(count, (_) => print("한번 호출"));
+    debounce(count, (_) => print("마지막 변경에 한번만 호출"),
+        time: Duration(seconds: 5)); // 검색어 추천할 때 잘 사용하자
+    interval(count, (_) => print("변경되고 있는 동안에 해당 초마다 호출"),
+        time: Duration(seconds: 1));
+
     super.onInit();
   }
 

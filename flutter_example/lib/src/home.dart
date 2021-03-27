@@ -4,6 +4,7 @@ import 'package:flutter_example/src/pages/normal/first.dart';
 import 'package:flutter_example/src/pages/state_management/reactive_state_manage_page.dart';
 import 'package:flutter_example/src/pages/state_management/simple_state_manage_page.dart';
 import 'package:get/get.dart';
+import 'package:flutter_example/src/pages/dependencies/dep_manage_page.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -68,6 +69,10 @@ class Home extends StatelessWidget {
             RaisedButton(
               child: Text("반응형상태관리"),
               onPressed: () => Get.to(() => ReactiveStateManagePage()),
+            ),
+            RaisedButton(
+              child: Text("의존성 주입"),
+              onPressed: () => Get.to(() => DepManagePage()),
             ),
           ],
         ),
