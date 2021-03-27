@@ -21,9 +21,10 @@ class _TabBarCupertinoWidgetState extends State<TabBarCupertinoWidget> {
 
   final items = <BottomNavigationBarItem>[
     BottomNavigationBarItem(icon: Icon(Icons.list), label: "Main"),
-    BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-    BottomNavigationBarItem(icon: Container()),
     BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: "Stat"),
+    BottomNavigationBarItem(icon: Container()),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.person_pin_circle_rounded), label: "Community"),
     BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings")
   ];
 
@@ -55,15 +56,17 @@ class _TabBarCupertinoWidgetState extends State<TabBarCupertinoWidget> {
   }
 
   int getIndex(int index) {
-    if (index == 2 ) return null;
+    if (index == 2) return null;
 
-    final newIndex = index > 2 ? index -1 : index ;
+    final newIndex = index > 2 ? index - 1 : index;
     return newIndex;
   }
 
   Widget _buildNotchCupertino({@required Widget child}) {
-
-    final colorCupertinoBorder = CupertinoDynamicColor.withBrightness(color: Color(0x4C000000), darkColor: Color(0x29C000000), );
+    final colorCupertinoBorder = CupertinoDynamicColor.withBrightness(
+      color: Color(0x4C000000),
+      darkColor: Color(0x29C000000),
+    );
 
     return CustomPaint(
       painter: _BottomAppBarPainter(

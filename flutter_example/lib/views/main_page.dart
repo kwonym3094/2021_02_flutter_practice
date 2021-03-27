@@ -1,10 +1,17 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/widget/card_horizontal.dart';
-import 'package:flutter_example/widget/content_list_widget.dart';
 import 'package:flutter_example/widget/header.dart';
+import 'package:flutter_example/models/categoreis.dart';
 
 class MainPage extends StatelessWidget {
+  List<Categories> categories = [
+    Categories(title: "웨이트 트레이닝", color: Color(0xffF7D6AD)),
+    Categories(title: "요가", color: Color(0xffFF7BB1)),
+    Categories(title: "필라테스", color: Color(0xffFE2203)),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -16,8 +23,16 @@ class MainPage extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Header(
-                title: "My Workouts",
+              Row(
+                children: [
+                  Expanded(
+                    child: Header(
+                      title: "내 라이브러리",
+                    ),
+                  ),
+                  Container(
+                      padding: EdgeInsets.only(right: 10), child: Text("더보기"))
+                ],
               ),
               SizedBox(
                 height: 40,
@@ -26,13 +41,41 @@ class MainPage extends StatelessWidget {
               SizedBox(
                 height: 40,
               ),
-              Header(
-                title: "Other lists",
+              Row(
+                children: [
+                  Expanded(
+                    child: Header(
+                      title: "추천 프로그램",
+                    ),
+                  ),
+                  Container(
+                      padding: EdgeInsets.only(right: 10), child: Text("더보기"))
+                ],
               ),
               SizedBox(
                 height: 8,
               ),
               HorizontalCardsView(),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Header(
+                      title: "카테고리",
+                    ),
+                  ),
+                  Container(
+                      padding: EdgeInsets.only(right: 10), child: Text("더보기"))
+                ],
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              SizedBox(
+                height: 350,
+              )
             ],
           ),
         )
