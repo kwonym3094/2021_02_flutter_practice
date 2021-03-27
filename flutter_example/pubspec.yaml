@@ -28,6 +28,8 @@ dependencies:
 
   table_calendar: ^2.3.3
 
+  get: ^3.26.0
+
   syncfusion_flutter_calendar: ^18.4.44
   flappy_search_bar : ^1.7.2
 
