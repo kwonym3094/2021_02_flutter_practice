@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_example/src/app.dart';
 import 'package:flutter_example/src/binding/init_binding.dart';
 import 'package:flutter_example/src/components/youtube_detail.dart';
-import 'package:flutter_example/src/cotroller/youtube_detail_controller.dart';
-import 'package:flutter_example/src/cotroller/youtube_search_controller.dart';
+import 'package:flutter_example/src/controller/youtube_detail_controller.dart';
+import 'package:flutter_example/src/controller/youtube_search_controller.dart';
 import 'package:flutter_example/src/pages/search.dart';
 import 'package:get/get.dart';
 

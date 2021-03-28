@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import 'cotroller/app_controller.dart';
+import 'controller/app_controller.dart';
 import 'pages/explorer.dart';
 import 'pages/home.dart';
 import 'pages/library.dart';

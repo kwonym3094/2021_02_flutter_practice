@@ -1,4 +1,4 @@
-import 'package:flutter_example/src/cotroller/app_controller.dart';
+import 'package:flutter_example/src/controller/app_controller.dart';
 import 'package:flutter_example/src/repository/youtube_repository.dart';
 import 'package:get/get.dart';
 

@@ -29,6 +29,22 @@ class YoutubeRepository extends GetConnect {
     }
   }
 
+  Future<YoutubeVideoResult> search(
+      String searchKey, String nextPageToken) async {
+    String url =
+        "/youtube/v3/search?part=snippet&maxResults=10&order=date&type=video&videoDefinition=high&key=AIzaSyCKxVO5oVHMc9NbvMgiaz-1W6G-eKZSLKw&pageToken=$nextPageToken&q=$searchKey";
+    final response = await get(url);
+    if (response.status.hasError) {
+      return Future.error(response.statusText);
+    } else {
+      if (response.body['items'] != null && response.body["items"].length > 0) {
+        print("videos!!!!!!!");
+        print(response.body);
+        return YoutubeVideoResult.fromJson(response.body);
+      }
+    }
+  }
+
   // 조회수 가져오기 : search 에서 다 제공하지 않아서
   Future<Statistics> getVideoInfoById(String videoId) async {
     String url =
