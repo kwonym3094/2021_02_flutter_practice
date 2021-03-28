@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get: ^3.26.0
+  get: ^3.24.0
   flutter_svg: ^0.19.3
   intl: ^0.17.0
   youtube_player_flutter: ^6.1.0+7
