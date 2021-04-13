@@ -27,6 +27,18 @@
  => 이를 해결하기 위해 나온것이 provider
  
  
- ## GetxController vs GetService
-  - GetxController는 permanent: true 인자를 넣어 controller가 메모리에 계속 남아있게 할 수 있고
-  - GetService역시 계속 남아있게 할 수 있지만, 필요한 경우 Get.reset()으로 메모리의 모든 instance를 내릴 수 있음 (모든! 인스턴스를 내리니 사용에 주의)
+## GetxController vs GetService
+ - GetxController는 permanent: true 인자를 넣어 controller가 메모리에 계속 남아있게 할 수 있고
+ - GetService역시 계속 남아있게 할 수 있지만, 필요한 경우 Get.reset()으로 메모리의 모든 instance를 내릴 수 있음 (모든! 인스턴스를 내리니 사용에 주의)
+
+## final vs const
+ - const 는 field가 될 수 없음
+ - 차이가 없어 보이지만 compiler가 매우 다르게 받아들이게 됨
+ - const : 컴파일 타임에 상수를 설정 : 속도면에서 이점을 가질 수 있음
+ - final : 런타임에 상수를 결정
+ - 컴파일 타임 : 컴파일 과정을 통해 기계어 코드로 변환 되어 실행 가능한 프로그램화 하는 시간
+ - 런타임 : 응용프로그램이 동작되어 지는 시간
+ - 사용할 수 있는 예 : 앱 전체에 padding 이 들어가야 한다면 const EdgeInsets.all(~) 방식으로 => 그렇지 않다면 메모리를 많이 사용하게 됨 !!!
+
+## build_runner 로 생성한 g.dart 파일 안보고 싶을때 ?
+ - ctrl + , -> 세팅 이동 -> files exclude 검색 -> **/*.g.dart 추가

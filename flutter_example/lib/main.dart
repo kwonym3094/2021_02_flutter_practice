@@ -1,12 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_example/src/app.dart';
-import 'package:flutter_example/src/binding/init_binding.dart';
-import 'package:flutter_example/src/components/youtube_detail.dart';
-import 'package:flutter_example/src/controller/youtube_detail_controller.dart';
-import 'package:flutter_example/src/controller/youtube_search_controller.dart';
-import 'package:flutter_example/src/pages/search.dart';
-import 'package:get/get.dart';
+import 'package:flutter_example/code_runner.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       title: "Youtube Clone Coding",
       theme: ThemeData(
         primaryColor: Colors.white,
@@ -23,29 +17,30 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      initialBinding: InitBinding(),
-      getPages: [
-        GetPage(name: '/', page: () => App()),
-        GetPage(
-          name: '/detail/:videoId',
-          page: () => YoutubeDetail(),
-          binding: BindingsBuilder(
-            () => Get.lazyPut<YoutubeDetailController>(
-              () => YoutubeDetailController(),
-            ),
-          ),
-        ),
-        GetPage(
-          name: '/search',
-          page: () => YoutubeSearch(),
-          binding: BindingsBuilder(
-            () => Get.lazyPut<YoutubeSearchController>(
-              () => YoutubeSearchController(),
-            ),
-          ),
-        ),
-      ],
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  void _runCode() {
+    CodeRunner.runCode();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _runCode,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
