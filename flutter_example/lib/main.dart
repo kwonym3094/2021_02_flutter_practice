@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_example/src/animated_widget_page.dart';
-import 'package:flutter_example/src/hook_page.dart';
-
-import 'src/basic_animation_page.dart';
+import 'package:flutter_example/src/responsive_safe_area.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,51 +10,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Animation Practice",
-      theme: ThemeData(
-        primaryColor: Colors.white,
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: MyHome(),
-    );
-  }
-}
-
-class MyHome extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BasicAnimationPage()));
-                },
-                child: Text("basic animation")),
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ReusableAnimationPage()));
-                },
-                child: Text("reusable animation")),
-            TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HookPage()));
-                },
-                child: Text("animation by Flutter Hook library")),
-          ],
-        ),
+      home: Scaffold(
+        body: ResponsiveSafeArea(builder: (context, size) {
+          return Container(
+            decoration: BoxDecoration(color: Colors.green.shade200),
+            alignment: Alignment.topCenter,
+            height: size.height / 2,
+            child: Column(
+              children: <Widget>[
+                Text(
+                  "Let's get",
+                  style: Theme.of(context).textTheme.display1,
+                ),
+                Text(
+                  "RESPONSIVE",
+                  style: Theme.of(context).textTheme.display3,
+                ),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }
