@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_example/src/app.dart';
-import 'package:flutter_example/src/binding/init_binding.dart';
-import 'package:flutter_example/src/components/youtube_detail.dart';
-import 'package:flutter_example/src/controller/youtube_detail_controller.dart';
-import 'package:flutter_example/src/controller/youtube_search_controller.dart';
-import 'package:flutter_example/src/pages/search.dart';
-import 'package:get/get.dart';
+import 'package:flutter_example/src/animated_widget_page.dart';
+import 'package:flutter_example/src/hook_page.dart';
+
+import 'src/basic_animation_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,37 +12,53 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: "Youtube Clone Coding",
+    return MaterialApp(
+      title: "Animation Practice",
       theme: ThemeData(
         primaryColor: Colors.white,
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      initialBinding: InitBinding(),
-      getPages: [
-        GetPage(name: '/', page: () => App()),
-        GetPage(
-          name: '/detail/:videoId',
-          page: () => YoutubeDetail(),
-          binding: BindingsBuilder(
-            () => Get.lazyPut<YoutubeDetailController>(
-              () => YoutubeDetailController(),
-            ),
-          ),
+      home: MyHome(),
+    );
+  }
+}
+
+class MyHome extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BasicAnimationPage()));
+                },
+                child: Text("basic animation")),
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ReusableAnimationPage()));
+                },
+                child: Text("reusable animation")),
+            TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HookPage()));
+                },
+                child: Text("animation by Flutter Hook library")),
+          ],
         ),
-        GetPage(
-          name: '/search',
-          page: () => YoutubeSearch(),
-          binding: BindingsBuilder(
-            () => Get.lazyPut<YoutubeSearchController>(
-              () => YoutubeSearchController(),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
