@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/src/animated_widget_page.dart';
 import 'package:flutter_example/src/hook_page.dart';
+import 'package:flutter_example/src/staggered_animation.dart';
 
 import 'src/basic_animation_page.dart';
 
@@ -56,6 +57,12 @@ class MyHome extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => HookPage()));
                 },
                 child: Text("animation by Flutter Hook library")),
+            TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => StaggerDemo()));
+                },
+                child: Text("Staggered Animation")),
           ],
         ),
       ),
