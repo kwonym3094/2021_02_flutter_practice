@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_example/src/bloc/todo_bloc.dart';
+import 'package:flutter_example/src/bloc/todo_cubit.dart';
 import 'package:flutter_example/src/bloc/todo_event.dart';
 import 'package:flutter_example/src/bloc/todo_state.dart';
 import 'package:flutter_example/src/repository/todo_repository.dart';
 
-class App extends StatefulWidget {
+class HomeCubitPage extends StatefulWidget {
   @override
-  _AppState createState() => _AppState();
+  _HomeCubitPageState createState() => _HomeCubitPageState();
 }
 
-class _AppState extends State<App> {
+class _HomeCubitPageState extends State<HomeCubitPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => TodoBloc(
+      create: (_) => TodoCubit(
           repository:
               TodoRepository()), // provider를 초기화 하는 작업, child 아래에 있는 모든 widget 에서 bloc class 안에 있는 기능들을 사용할 수 있게 됨
-      child: HomeWidget(),
+      child: HomeCubitWidget(),
     );
   }
 }
 
-class HomeWidget extends StatefulWidget {
+class HomeCubitWidget extends StatefulWidget {
   @override
-  _HomeWidgetState createState() => _HomeWidgetState();
+  _HomeCubitWidgetState createState() => _HomeCubitWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
+class _HomeCubitWidgetState extends State<HomeCubitWidget> {
   String title = '';
 
   @override
@@ -35,8 +36,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     super.initState();
     // Bloc 불러내는 방법 1
     // ListTodosEvent
-    BlocProvider.of<TodoBloc>(context)
-        .add(ListTodoEvent()); // add는 기본적으로 Bloc에 있는 이벤트
+    BlocProvider.of<TodoCubit>(context).listTodo(); // add는 기본적으로 Bloc에 있는 이벤트
   }
 
   @override
@@ -48,7 +48,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Bloc 불러내는 방법 2
-          context.read<TodoBloc>().add(CreateTodoEvent(title: title));
+          context.read<TodoCubit>().createTodo(title);
         },
         child: Icon(Icons.edit),
       ),
@@ -65,7 +65,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               height: 16,
             ),
             Expanded(
-              child: BlocBuilder<TodoBloc, TodoState>(
+              child: BlocBuilder<TodoCubit, TodoState>(
                   // BloC 을 사용하기 위한 widget. 2개의 generic (1. BloC, 2. State)
                   builder: (context, state) {
                 if (state is Empty) {
@@ -91,8 +91,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                             InkWell(
                               onTap: () {
                                 // Bloc 불러내는 방법 3
-                                BlocProvider.of<TodoBloc>(context)
-                                    .add(DeleteTodoEvent(todo: item));
+                                BlocProvider.of<TodoCubit>(context)
+                                    .deletTodo(item);
                               },
                               child: Icon(Icons.delete),
                             )

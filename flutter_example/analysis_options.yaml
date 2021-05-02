@@ -24,7 +24,7 @@ include: package:pedantic/analysis_options.yaml
 
 analyzer:
   errors:
-    prefer_single_quotes : ignore
+    prefer_single_quotes : info
 linter:
   rules:
     - prefer_single_quotes
