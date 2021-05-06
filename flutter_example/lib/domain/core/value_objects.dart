@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_example/domain/core/errors.dart';
 
 import 'failures.dart';
 
@@ -10,6 +11,17 @@ abstract class ValueObject<T> {
   const ValueObject();
 
   Either<ValueFailure<T>, T> get value;
+
+  /// Throws [UnexpectedValueError] containing the [ValueFailure]
+  T getOrCrash() {
+    return value.fold(
+        // (failure) => throw UnExpectedValueError(failure), (success) => success); // self-explanatory => identity로 변경
+        (failure) => throw UnExpectedValueError(failure),
+        id); // ctrl + click 눌러서 dartz 패키지 참고
+    // id = identity - same as writing (right) => right
+  }
+
+  bool isValid() => value.isRight();
 
   @override
   bool operator ==(Object other) {

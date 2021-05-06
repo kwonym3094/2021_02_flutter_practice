@@ -1,32 +1,127 @@
-## Bloc 패턴이란
- - **B**ussiness
- - **Lo**gic
- - **c**omponent
- - UI 부분은 비즈니스 로직과 상관없이 받은 데이터만 보여주면 된다는 아이디어
- - ![bloc pattern](https://i0.wp.com/everyday.codes/wp-content/uploads/2020/06/bloc-splash.png?fit=925%2C455&ssl=1)
- - UI 위젯에서는 이벤트만 넘겨주고 모든 변경은 Bloc 에서 처리
- - bloc을 구독하고 있는 UI에 Stream 으로 넘겨줌
- 
-## bloc 패턴이어야 하는 이유
- - 기본 widget : StatelessWidget, StatefulWidget
- - 기본 widget에서의 문제
-    * 서버로 부터 데이터를 받아오거나, 로컬파일을 비지니스로직에 따라 복잡한 widget 트리에 정보를 변경하는 것은 StatefulWidget 에서 어려움
-    * 복잡한 트리 구조에서 tree 의 뿌리 부분에 setState를 지정해준다하면 tree 의 모든 widget을 다시 build 해줘야함 >> 성능 문제
-    * 트리 중 하나의 widget 에 하위 widget 을 추가한다면 상단의 모든 widget 을 변경해줘야하는 번거로움이 생김
- - 비즈니스 로직과 UI를 떨어트려놓고 필요에따라 원하는 부분만 UPDATE 처리할 수 있음
+# 공부하다 모르는 부분 메모
+## 1. Facade Pattern
+ - 건물의 정면을 의미
+ - 어떤 소프트웨어의 다른 커다란 코드 부분에 대하여 간략화된 인터페이스를 제공해주는 디자인 패턴
+ - 복잡한 바깥쪽의 코드가 라이브러리의 안쪽 코드에 의존하는 일을 감소시켜 주고, 복잡한 소프트웨어를 사용 할 수 있게 간단한 인터페이스 제공
+ - 어떤 일을 수행할 때 로직, 객체들을 통합한 객체를 사용해 간단한 인터페이스를 구현하는 것
+ - 예제
+   - 영화를 보기 위해 다음 과정이 필요로 한다
+      - 음료 준비 -> TV 켜기 -> 영화 검색 -> 영화 결제 -> 영화 재생
+   - 해당 메소드를 구현하기 위해 1)음료, 2)Remote Controller, 3)영화 3개의 객체를 만들고 메소드에 이를 로직에 맞춰서 순서대로 진행해 줘야함
+   - 이를 단일 메소드에서 구현하지 말고 class 안의 메소드로 만들어 그 곳에서 객체를 불러오고 로직을 구현해 놓음 => 다음 사용자는 흘러가는 로직을 몰라도 이 class 안에 필요한 값만 집어넣어 기능을 사용하면 됨 => interface 역할 !
 
-## Bloc 기본 패턴
- - Bloc (class)
- - EventBloc (class)
- - Event (enum)
+ ---
+## 2. OOP(Object-Oriented Programing)
+ - 쉽게 생각하면 코드의 설계도를 만드는 것
+ - 클래스는 설계도, 인스턴스는 직접 일하는 구현체
+ - 특징을 매번 까먹기 때문에 특징을 정리함
+ - 특징
+   - 캡슐화(Encapsulation)
+      - 하나의 객체에 대해 그 객체가 특정한 목적을 위한 변수나 메소드를 하나로 묶는 것
+      - 훗날 이 클래스에서 만들어진 객체가 특정 목적을 잘 수행할 수 있도록 사용해야할 변수와 그 변수를 가지고 특정한 액션(= 메소드)를 관련성 있게 클래스 구성해야함
+      - 캡슐화 하는 중요한 이유 : 정보은닉!
+         - 누구든 접근해서 유저 정보를 변경할 수 없도록 getter, setter를 통해 간접적으로 접근하도록 해야함
+         - 캡슐화 != 정보은닉 은 아니라는 것 인지
+   - 추상화(Abstraction)
+      - 목적과 관련 없는 부분을 제거하여 필요한 부분만을 표현하기 위한 개념
+      - 객체들의 공통된 특징을 추출해 정의해 놓은 설계 기법
+   - 다형성(Polymorphism)
+      - 형태가 같은데 다른 기능을 하는 것을 의미
+      - 코드의 재사용, 코드 길이가 감소 되어 유지보수가 용이하도록 도와줌
+      - 다형성을 사용하면 좋은점? => 속성을 사용하기 위한 인터페이스를 유지, 이름을 낭비하지 않음
+      - 예시
+         - 고양이 클래스에는 "울음" 이라는 속성이 정의되어 있다
+         - 사자는 고양이 과 이기 때문에 사자 클래스는 고양이 클래스를 상속 받는다
+         - 사자 클래스에는 울임이라는 속성이 자동으로 추가된다
+         - 고양이와 사자의 울음소리는 다르기 때문에 따로 구현한다 -> 다형성
+      - OOP 에서 다형성의 개념을 녹여내는 방법
+         ### 1. overriding
+          - 부모 클래스에서 상속받은 자식 클래스에서 부모클래스에서 만들어진 메소드를 자식 클래스 에서 자신의 입맛대로 다시 재정의해서 사용하는 것
+         ### 2. overloading
+          - 같은 이름의 메소드를 사용하지만, 메소드 마다 다른 용도로 사용되며 그 결과물도 다르게 구현할 수 있게 만드는 개념
+   - 상속성, 재사용성(Inheritance)
+      - 객체 지향의 꽃!
+      - 기존 클래스의 기능을 가져와 재사용할 수 있으면서도 동시에 새롭게 만든 클래스에 새로운 기능을 추가할 수 있음
+      - **코드 중복을 없애기 위해**
+      - 자바에서는 단일 상속밖에 지원하지 않음(C++는 다중상속 지원함)
+         - 자바 진영에서는 객체지향적 관점에서 다중상속이 크게 유효하지 않다 생각하지만, 필요할수 있다 인정하여 대비책으로 interface를 다중 상속할 수 있게 활로를 열어줌
+         - 허나 인터페이스 존재 이유가 다중상속을 지원하기 위함이라 생각하면 안됨
 
-## bloc 패턴의 단점
- - bloc 파일들이 많아짐
- - 이해하고 사용하는데 진입장벽이 큼
- 
- => 이를 해결하기 위해 나온것이 provider
- 
- 
- ## GetxController vs GetService
-  - GetxController는 permanent: true 인자를 넣어 controller가 메모리에 계속 남아있게 할 수 있고
-  - GetService역시 계속 남아있게 할 수 있지만, 필요한 경우 Get.reset()으로 메모리의 모든 instance를 내릴 수 있음 (모든! 인스턴스를 내리니 사용에 주의)
+ ---
+ ## 3. extends, implements(Java)
+  - 메소드 혹은 변수를 '구현'하는가 혹은 그대로 '사용'하는가에 따라서 상속의 형태가 갈리게 됨
+      - extends : 부모에서 선언/정의를 모두하며 자식은 메소/변수를 그대로 사용할 수 있음
+      - implements : 부모에서 선언만 하며 자식에서 오버라이딩(=재정의) 해서 사용해야함
+      - abstract : extends와 implements의 혼합. extends 하되 몇 개는 추상 메소드로 구현됨
+
+ ---
+ ## 4. higher-order function(고차함수)
+  - 함수를 다루는 함수
+  - 사용시 유연하고 반복을 줄일 수 있는 코드를 작성할 수 있음
+  - 다음 중 하나 이상을 만족하면 HOF
+      - 하나 이상의 함수를 인자로 받는다
+      - 함수를 결과로 반환한다
+  - 예시
+   ```javascript
+   const twice = function(f, v) {
+    return f(f(v));
+   };
+
+   const plusOne = function(v) {
+      return v + 1;
+   };
+
+   console.log(twice(plusOne, 1)); // 3
+   ```
+
+ - 단순히 값을 전달하는 기존 관념을 넘어, 함수의 흐름을 제어하는 파라미토러써 수용 => **제어 패턴 추상화(Abstraction Patterns of Control)**
+ - HOF는 계산의 세부사항을 인자로 넘기는 함수 안에 캡슐화 하여 추상적으로 제공할 수 있도록 함
+ - 예제
+   - 만약 0 - 99 까지 출력하라 주어진다면
+```javascript
+// 0부터 99까지 출력
+for (let i = 0; i < 100; i++) {
+console.log(i);
+}
+```
+   - 요구사항이 10000으로 수정된다면?
+```javascript
+function repeat(n) {
+   for (let i = 0; i < n; i++) {
+      console.log(i);
+   }
+}
+repeat(10000);
+```
+   - "0부터 9999까지 배열에 담아라" 라 등등 복잡한 로직이 추가 된다면?
+```javascript
+function repeat(n, fn, interval) {
+    for (let i = 0; i < n; i = interval(i)) {
+        fn(i);
+    }
+}
+
+repeat(100, console.log, i => i === 0 ? ++i : i+i); // 0 1 2 4 8 16 32 64
+```
+   - 번외 : 함수가 함수를 반환하는 경우
+```javascript
+function fillArray(n, fn) {
+    let array = [];
+    for (let i = 0; i < n; i++) {
+        array.push(fn(i));
+    }
+    return array;
+}
+
+function makeItem(i) {
+    return (i) => `item${i}`;
+}
+
+const array = fillArray(7, makeItem);
+
+console.log(array); // [ 'item0', 'item1', 'item2', 'item3', 'item4', 'item5', 'item6' ]
+```
+
+
+ ## 5. abstract class in Dart
+  - Java의 interface랑 같다 생각하면 됨
