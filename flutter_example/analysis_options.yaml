@@ -16,7 +16,7 @@
 
 # 편하게 하는 방법: pedantic 라이브러리 사용
 
-include: package:pedantic/analysis_options.yaml
+include: package:lint/analysis_options.yaml
 
 # 필요한 것이 있을 때는 추가만 해주면됨
 
@@ -24,7 +24,10 @@ include: package:pedantic/analysis_options.yaml
 
 analyzer:
   errors:
-    prefer_single_quotes : info
+    prefer_single_quotes: info
+    missing_return: error
+    missing_required_param: error
+    must_be_immutable: error
 linter:
   rules:
     - prefer_single_quotes

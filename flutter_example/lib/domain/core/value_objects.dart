@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_example/domain/core/errors.dart';
+import 'package:uuid/uuid.dart';
 
 import 'failures.dart';
 
@@ -35,4 +36,25 @@ abstract class ValueObject<T> {
 
   @override
   String toString() => 'Value($value)';
+}
+
+// 각각 객체(ex. User, Note)에 대해 유일한 id를 가지도록 만들 value object가 필요함
+class UniqueId extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  // 앱 자체에서 unique한 값을 생성해야 할 때 => 패키지 사용(uuid)
+  factory UniqueId() {
+    return UniqueId._(right(const Uuid().v1()));
+  }
+
+  // 이미 unique 한 값을 받았을 때(ex. email id)
+  factory UniqueId.fromUniqueString(String uniqueId) {
+    assert(uniqueId != null);
+    return UniqueId._(
+      right(uniqueId),
+    );
+  }
+
+  const UniqueId._(this.value);
 }

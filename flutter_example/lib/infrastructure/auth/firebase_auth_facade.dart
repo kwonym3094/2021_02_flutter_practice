@@ -3,9 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_example/domain/auth/auth_failures.dart';
 import 'package:flutter_example/domain/auth/i_auth_facade.dart';
+import 'package:flutter_example/domain/auth/user.dart' as user;
 import 'package:flutter_example/domain/auth/value_objects.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
+import './firebase_user_mapper.dart';
 
+@LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
@@ -55,7 +59,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
 
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         // 조건 나누지 않는 이유? => id가 맞다는 것을 타인에게 노출시키지 않기 위해
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
@@ -70,7 +74,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     try {
       final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
-        return left(AuthFailure.cancelledByUser());
+        return left(const AuthFailure.cancelledByUser());
       }
       // 따로 저장
       final googleAuthentication = await googleUser.authentication;
@@ -87,8 +91,20 @@ class FirebaseAuthFacade implements IAuthFacade {
       return _firebaseAuth
           .signInWithCredential(authCredential)
           .then((result) => right(unit));
-    } on PlatformException catch (e) {
-      return left(AuthFailure.serverError());
+    } on PlatformException catch (_) {
+      return left(const AuthFailure.serverError());
     }
+  }
+
+  @override
+  Future<Option<user.User>> getSignedInUser() async =>
+      optionOf(_firebaseAuth.currentUser?.toDomain());
+
+  @override
+  Future<void> signOut() {
+    return Future.wait([
+      _googleSignIn.signOut(),
+      _firebaseAuth.signOut(),
+    ]);
   }
 }
