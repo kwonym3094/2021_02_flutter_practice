@@ -1,37 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/socicon_icons.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_example/ui/global/home/home_page.dart';
+import 'package:flutter_example/ui/global/theme/theme_bloc.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Startup Name Generator',
-      theme: ThemeData(
-        primaryColor: Color(0xff154C9E),
-        scaffoldBackgroundColor: Color(0xff1F1F1F),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return BlocProvider(
+      create: (context) => ThemeBloc(),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: _buildWithTheme,
       ),
-      // Scaffold : default app 화면
-      home: Home(),
     );
   }
-}
 
-class Home extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Container(
-          child: Icon(
-            Socicon.amazon,
-            size: 200,
-          ),
-        ),
-      ),
+  Widget _buildWithTheme(BuildContext context, ThemeState state) {
+    return MaterialApp(
+      title: 'Theme Change Tutorial',
+      theme: state.themeData,
+      home: HomePage(),
     );
   }
 }
