@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/views/signin.dart';
+import 'package:flutter_example/socicon_icons.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,8 +14,24 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // Scaffold : default app 화면
-      home: SignIn(),
+      home: Home(),
     );
   }
 }
 
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Container(
+          child: Icon(
+            Socicon.amazon,
+            size: 200,
+          ),
+        ),
+      ),
+    );
+  }
+}

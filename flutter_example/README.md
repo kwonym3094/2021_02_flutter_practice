@@ -1,34 +1,6 @@
-# flutter 보면서 배운 것들
-
-Widget : Android 의 View 와 비슷한 개념
- - 차이점
-   * immutable
-   * 변해야 하기 전까지 존재함 (android 의 life cycle 과 같지 않음)
-
-- StatelessWidget : 아무것도 변하지 않을 때 사용하기 좋음 (ex. logo image)
-- StatefulWidget : 통신, UI에 따라 변해야 할 때 사용하기 좋음
-  -> 사실은 StatelessWidget 와 동작이 같으나 안에 있는 State 객체가 변함
-
-layout은 어디에 적나?
-  - 따로 xml 없음
-  - widget tree 라고 하는 양식을 따라 작성
-  ex)
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Sample App"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.only(left: 20.0, right: 30.0),
-          ),
-          onPressed: () {},
-          child: Text('Hello'),
-        ),
-      ),
-    );
-  }
-
-Scaffold : default app 화면
+### 커스텀 아이콘 만들어서 넣기
+1. [fluttericon](https://www.fluttericon.com/) 사이트에서 사용할 커스텀 아이콘 svg 파일 업로드
+2. 사용하고 싶은 아이콘 드래그 한 후 다운로드
+3. 다운 받은 zip 파일안의 ttf 파일을 프로젝트에 넣어주고, pubspec.yaml 파일에 font 지정해줌
+4. ~.dart 파일 을 lib\ 아래 넣어주고 dart syntex 오류 있는 것들 고쳐주기
+5. material 기본 아이콘 사용하듯 사용하면 됨
