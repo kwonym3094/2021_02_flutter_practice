@@ -1,7 +1,8 @@
 ## infrastructure layer
-
+- 3rd party library를 이용해 데이터 받아옴
 - Exception 을 Failure로 변환하는 역할
 - 데이터가 제대로 넘어온다면 도메인에게 전달하는 interface 역할
+- 데이터가 제대로 넘어오지 않는다면 (exception 발생) 그 결과를 failure로 전환하여 domain->application에 전달
 - core
     - injectable 
         - 3rd party library는 annotation을 할 수 없기 때문에 abstract class 를 만들어 이를 annotation 함

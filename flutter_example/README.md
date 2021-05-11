@@ -125,3 +125,21 @@ console.log(array); // [ 'item0', 'item1', 'item2', 'item3', 'item4', 'item5', '
 
  ## 5. abstract class in Dart
   - Java의 interface랑 같다 생각하면 됨
+
+
+## 6. dependency injection
+ - 의존하고 있는 객체를 의존 받고 있는 객체와 함께 정의해주는 것
+ - 상황 예시
+      - 위젯 nesting 하부로 인자를 넘겨줘야 될때, depedency injection이 없다면 상단 위젯에서 하단 위젯으로 일일이 인자를 넘겨줘야함
+ - flutter 에서 만드는 방법  
+   1. 생성자에 파라미터 전달
+      - 가장 먼저 배우는 방법  
+      - 파라미터 수가 많아진다면 불필요한 코드 증가
+      - 위젯 트리 깊어지면 위에서 정의한 문제 발생  
+   2. Inherited Widget
+      - 상태관리를 하고자 하는 하위 위젯들을 Inherited Widget으로 감싸서 사용
+      - 위에서 아래로 일방적인 데이터 흐름을 강제할 수 있음
+      - context를 사용할 수 없는 위젯은 거의 불가능
+      - of()를 호출할 때마다 해당 메소드가 있는 build context가 재빌드 되기 때문에 성능 저하 발생할 수 있음  
+   3. get_it package  
+   4.   

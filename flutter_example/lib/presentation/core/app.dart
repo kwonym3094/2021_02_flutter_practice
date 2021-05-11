@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:flutter_example/application/auth/auth_bloc.dart';
 import 'package:flutter_example/presentation/injection.dart';
 import 'package:flutter_example/presentation/routes/router.gr.dart';

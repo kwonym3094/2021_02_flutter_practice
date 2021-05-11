@@ -1,6 +1,11 @@
-import 'package:flash/flash.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flash/flash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:flutter_example/application/auth/sign_in_form/sign_in_form_bloc.dart';
 
 class SignInForm extends StatelessWidget {
@@ -79,7 +84,7 @@ class SignInForm extends StatelessWidget {
                     .value
                     .fold(
                         (fail) => fail.maybeMap(
-                            invalueEmail: (_) => 'Invalid Email',
+                            invalidEmail: (_) => 'Invalid Email',
                             orElse: () => null),
                         (_) => null),
               ),

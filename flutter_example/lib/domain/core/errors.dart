@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:flutter_example/domain/core/failures.dart';
 
 class UnExpectedValueError extends Error {

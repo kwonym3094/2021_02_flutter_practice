@@ -1,14 +1,22 @@
+// Flutter imports:
+import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
+
+// Project imports:
 import 'package:flutter_example/domain/auth/auth_failures.dart';
 import 'package:flutter_example/domain/auth/i_auth_facade.dart';
 import 'package:flutter_example/domain/auth/user.dart' as user;
 import 'package:flutter_example/domain/auth/value_objects.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:injectable/injectable.dart';
 import './firebase_user_mapper.dart';
 
+// interface 는 이렇게 사용한다함
+// injection.config.dart 확인해보면 문제가 생기는 것: 3rd party library인 FirebaseAuth와 GoogleSignIn 도 의존성 주입해줘야함
+//   => injectable을 위해 module을 따로 만들어 3rd party lib에 직접적 권한을 줘야함 (infrastructure/core/firebase_injectable_module.dart 참고)
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;

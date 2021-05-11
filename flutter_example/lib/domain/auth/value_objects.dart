@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
+
+// Project imports:
 import 'package:flutter_example/domain/core/failures.dart';
 import 'package:flutter_example/domain/core/value_objects.dart';
 import 'package:flutter_example/domain/core/value_validators.dart';

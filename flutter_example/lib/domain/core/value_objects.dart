@@ -1,8 +1,12 @@
-import 'package:dartz/dartz.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
-import 'package:flutter_example/domain/core/errors.dart';
+
+// Package imports:
+import 'package:dartz/dartz.dart';
 import 'package:uuid/uuid.dart';
 
+// Project imports:
+import 'package:flutter_example/domain/core/errors.dart';
 import 'failures.dart';
 
 // @immutable: final field만 존재하게 강요함

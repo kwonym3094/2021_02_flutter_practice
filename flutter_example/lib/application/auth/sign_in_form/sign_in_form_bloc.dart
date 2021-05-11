@@ -1,16 +1,22 @@
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+
+// Project imports:
 import 'package:flutter_example/domain/auth/auth_failures.dart';
 import 'package:flutter_example/domain/auth/i_auth_facade.dart';
 import 'package:flutter_example/domain/auth/value_objects.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
 part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
 part 'sign_in_form_bloc.freezed.dart';
+
+// _iAuthFacade instance가 injection 되기를 원함 : DI
 
 @injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
