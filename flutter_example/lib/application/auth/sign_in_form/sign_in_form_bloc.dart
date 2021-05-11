@@ -4,6 +4,7 @@ import 'dart:async';
 // Package imports:
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -99,7 +100,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     // validation 통과 못했을 경우 + 통과 했을 경우 동시에 포함
     yield state.copyWith(
       isSubmitting: false,
-      showErrorMessage: true,
+      showErrorMessage: AutovalidateMode.always,
       authFailureOrSuccessOption: optionOf(failureOrSucess),
     );
   }

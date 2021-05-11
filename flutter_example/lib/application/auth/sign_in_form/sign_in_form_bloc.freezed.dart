@@ -706,7 +706,7 @@ class _$SignInFormStateTearOff {
       required Password password,
       required bool isSubmitting,
       required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
-      required bool showErrorMessage}) {
+      required AutovalidateMode showErrorMessage}) {
     return _SignInFormState(
       emailAddress: emailAddress,
       password: password,
@@ -731,7 +731,7 @@ mixin _$SignInFormState {
 // Unit : nullable type
 //  - 둘 모두 null로 처리할 시 발생하는 오류를 잡기 위해 사용함
 // Option<None,Some> // Either<Left, Right> 와 비슷함
-  bool get showErrorMessage => throw _privateConstructorUsedError;
+  AutovalidateMode get showErrorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInFormStateCopyWith<SignInFormState> get copyWith =>
@@ -748,7 +748,7 @@ abstract class $SignInFormStateCopyWith<$Res> {
       Password password,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
-      bool showErrorMessage});
+      AutovalidateMode showErrorMessage});
 }
 
 /// @nodoc
@@ -788,7 +788,7 @@ class _$SignInFormStateCopyWithImpl<$Res>
       showErrorMessage: showErrorMessage == freezed
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AutovalidateMode,
     ));
   }
 }
@@ -805,7 +805,7 @@ abstract class _$SignInFormStateCopyWith<$Res>
       Password password,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
-      bool showErrorMessage});
+      AutovalidateMode showErrorMessage});
 }
 
 /// @nodoc
@@ -847,7 +847,7 @@ class __$SignInFormStateCopyWithImpl<$Res>
       showErrorMessage: showErrorMessage == freezed
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AutovalidateMode,
     ));
   }
 }
@@ -875,7 +875,7 @@ class _$_SignInFormState implements _SignInFormState {
 // Unit : nullable type
 //  - 둘 모두 null로 처리할 시 발생하는 오류를 잡기 위해 사용함
 // Option<None,Some> // Either<Left, Right> 와 비슷함
-  final bool showErrorMessage;
+  final AutovalidateMode showErrorMessage;
 
   @override
   String toString() {
@@ -926,7 +926,7 @@ abstract class _SignInFormState implements SignInFormState {
       required Password password,
       required bool isSubmitting,
       required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
-      required bool showErrorMessage}) = _$_SignInFormState;
+      required AutovalidateMode showErrorMessage}) = _$_SignInFormState;
 
   @override
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
@@ -942,7 +942,7 @@ abstract class _SignInFormState implements SignInFormState {
 // Unit : nullable type
 //  - 둘 모두 null로 처리할 시 발생하는 오류를 잡기 위해 사용함
 // Option<None,Some> // Either<Left, Right> 와 비슷함
-  bool get showErrorMessage => throw _privateConstructorUsedError;
+  AutovalidateMode get showErrorMessage => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SignInFormStateCopyWith<_SignInFormState> get copyWith =>

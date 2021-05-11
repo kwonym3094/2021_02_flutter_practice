@@ -58,7 +58,7 @@ class SignInForm extends StatelessWidget {
       },
       builder: (context, state) {
         return Form(
-          autovalidate: state.showErrorMessage,
+          autovalidateMode: state.showErrorMessage,
           child: ListView(
             padding: const EdgeInsets.all(8),
             children: [

@@ -12,13 +12,14 @@ class SignInFormState with _$SignInFormState {
     // Unit : nullable type
     //  - 둘 모두 null로 처리할 시 발생하는 오류를 잡기 위해 사용함
     // Option<None,Some> // Either<Left, Right> 와 비슷함
-    required bool showErrorMessage, // 아무 버튼이나 한번 누른 후에 발동할 수 있도록 처리하는 로직
+    required AutovalidateMode
+        showErrorMessage, // 아무 버튼이나 한번 누른 후에 발동할 수 있도록 처리하는 로직
   }) = _SignInFormState;
 
   factory SignInFormState.initial() => SignInFormState(
         emailAddress: EmailAddress(''),
         password: Password(''),
-        showErrorMessage: false,
+        showErrorMessage: AutovalidateMode.disabled,
         isSubmitting: false,
         authFailureOrSuccessOption: none(),
       );
