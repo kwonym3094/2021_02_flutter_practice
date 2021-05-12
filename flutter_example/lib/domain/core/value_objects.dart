@@ -26,6 +26,10 @@ abstract class ValueObject<T> {
     // id = identity - same as writing (right) => right
   }
 
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
+    return value.fold((failure) => left(failure), (r) => right(unit));
+  }
+
   bool isValid() => value.isRight();
 
   @override
