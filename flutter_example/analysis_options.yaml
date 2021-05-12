@@ -1,26 +1,5 @@
-# linter 3가지 상태 나타낼 수 있음
-#  1. info
-#  2. warning
-#  3. error
 
-# # error 상태로 변경할 때
-#   analyzer:
-#     errors:
-#       # avoid_print : warning
-#       avoid_print : error
 
-# # linter default 설정은 info
-#   linter:
-#     rules:
-#       avoid_print : true
-
-# 편하게 하는 방법: pedantic 라이브러리 사용
-
-include: package:pedantic/analysis_options.yaml
-
-# 필요한 것이 있을 때는 추가만 해주면됨
-
-# 혹은 pedantic 에 있는 것중 제외하고 싶은 것이 있다면? => ignore
 
 analyzer:
   errors:
