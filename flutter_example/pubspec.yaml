@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   another_flushbar: ^1.10.20
   auto_route: ^2.2.0
   cloud_firestore: ^2.1.0
@@ -43,6 +44,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+    
   auto_route_generator: ^2.0.1
   build_runner: ^2.0.2
   freezed: ^0.14.1+3

@@ -4,6 +4,9 @@ import 'package:flutter_example/domain/notes/note.dart';
 import 'package:flutter_example/domain/notes/note_failure.dart';
 import 'package:kt_dart/kt.dart';
 
+// 여기서는 모든 기능을 하나에 다 정의했지만 BloC은 여러개로 나눌 것임
+//  - 하나의 Bloc에서 처리하기 어렵기 때문
+//  - clean한 architecture을 만들기 위해
 abstract class INoteRepository {
   // 만들어야할 interface
   // - watch notes (firestore 에서만 가능할 듯)
