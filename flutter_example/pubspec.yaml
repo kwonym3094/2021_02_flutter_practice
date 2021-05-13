@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   another_flushbar: ^1.10.20
   auto_route: ^2.2.0
+  cloud_firestore: ^2.1.0
   cupertino_icons: ^1.0.0
   dartz: ^0.10.0-nullsafety.1
   firebase_auth: ^1.1.3
@@ -35,6 +36,7 @@ dependencies:
   get_it: ^6.1.0
   google_sign_in: ^5.0.2
   injectable: ^1.3.0
+  json_annotation: ^4.0.1
   kt_dart: ^0.9.0
   uuid: ^3.0.4
 
@@ -46,6 +48,7 @@ dev_dependencies:
   freezed: ^0.14.1+3
   import_sorter: ^4.5.1
   injectable_generator: ^1.3.0
+  json_serializable: ^4.1.1
   lint: ^1.5.3
 
 # For information on the generic Dart part of this file, see the
