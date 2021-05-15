@@ -1,2 +1,2 @@
 # 2021_02_flutter_practice
-cross_platform 개발로 전환
+- 본 디렉토리는 공부하는 내용을 브랜치 별로 정리하였음
