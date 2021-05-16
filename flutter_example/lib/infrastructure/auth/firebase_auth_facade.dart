@@ -91,8 +91,8 @@ class FirebaseAuthFacade implements IAuthFacade {
       // TwitterAuthProvider, GithubAuthProvider 확인해보기 => 모두 FirebaseAuth 패키지에서 나옴
 
       final authCredential = GoogleAuthProvider.credential(
-        idToken: googleAuthentication.idToken,
         accessToken: googleAuthentication.accessToken,
+        idToken: googleAuthentication.idToken,
       );
       // OAuthCredential 을 확인해보면 idToken, accessToken 만 보여주는 Map 객체이다
 

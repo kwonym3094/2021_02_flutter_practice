@@ -7,8 +7,9 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../pages/sign_in/sign_in_page.dart' as _i3;
-import '../pages/splash/splash_page.dart' as _i4;
+import '../notes/notes_overview/notes_overview_page.dart' as _i5;
+import '../pages/sign_in/sign_in_page.dart' as _i4;
+import '../pages/splash/splash_page.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -16,33 +17,45 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    SignInRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.SignInPage();
-        }),
     SplashRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i4.SplashPage();
+          return _i3.SplashPage();
+        }),
+    SignInRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i4.SignInPage();
+        }),
+    NotesOverviewRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i5.NotesOverviewPage();
         })
   };
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(SignInRoute.name, path: '/'),
-        _i1.RouteConfig(SplashRoute.name, path: '/splash')
+        _i1.RouteConfig(SplashRoute.name, path: '/'),
+        _i1.RouteConfig(SignInRoute.name, path: '/signin'),
+        _i1.RouteConfig(NotesOverviewRoute.name, path: '/notes')
       ];
 }
 
+class SplashRoute extends _i1.PageRouteInfo {
+  const SplashRoute() : super(name, path: '/');
+
+  static const String name = 'SplashRoute';
+}
+
 class SignInRoute extends _i1.PageRouteInfo {
-  const SignInRoute() : super(name, path: '/');
+  const SignInRoute() : super(name, path: '/signin');
 
   static const String name = 'SignInRoute';
 }
 
-class SplashRoute extends _i1.PageRouteInfo {
-  const SplashRoute() : super(name, path: '/splash');
+class NotesOverviewRoute extends _i1.PageRouteInfo {
+  const NotesOverviewRoute() : super(name, path: '/notes');
 
-  static const String name = 'SplashRoute';
+  static const String name = 'NotesOverviewRoute';
 }

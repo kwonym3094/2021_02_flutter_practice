@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:flutter_example/application/auth/auth_bloc.dart';
-import 'package:flutter_example/presentation/routes/router.gr.dart';
 
 class SplashPage extends StatelessWidget {
   @override
@@ -20,10 +19,10 @@ class SplashPage extends StatelessWidget {
           // initial 일 때는 아무것도 발생하지 않음
           initial: (_) {},
           authenticated: (_) {
-            print('I am authenticated');
+            AutoRouter.of(context).replaceNamed('/notes');
           },
           unauthenticated: (_) {
-            AutoRouter.of(context).replace(const SignInRoute());
+            AutoRouter.of(context).replaceNamed('/signin');
           },
         );
       },

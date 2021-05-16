@@ -1,9 +1,11 @@
 // Flutter imports:
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flash/flash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_example/application/auth/auth_bloc.dart';
 
 // Project imports:
 import 'package:flutter_example/application/auth/sign_in_form/sign_in_form_bloc.dart';
@@ -16,45 +18,53 @@ class SignInForm extends StatelessWidget {
         state.authFailureOrSuccessOption.fold(
             () => {},
             (either) => either.fold(
-                (failure) async => {
-                      // FlushbarHelper.createError(
-                      //     message: failure.map(
-                      //   cancelledByUser: (_) => 'Cancelled',
-                      //   serverError: (_) => 'Server error',
-                      //   emailAlreadyInUse: (_) => 'Email already in use',
-                      //   invalidEmailAndPasswordCombination: (_) =>
-                      //       'Invalid email and password combination',
-                      // )).show(context)
+                    (failure) async => {
+                          // FlushbarHelper.createError(
+                          //     message: failure.map(
+                          //   cancelledByUser: (_) => 'Cancelled',
+                          //   serverError: (_) => 'Server error',
+                          //   emailAlreadyInUse: (_) => 'Email already in use',
+                          //   invalidEmailAndPasswordCombination: (_) =>
+                          //       'Invalid email and password combination',
+                          // )).show(context)
 
-                      await showFlash(
-                          context: context,
-                          duration: const Duration(seconds: 4),
-                          builder: (context, controller) {
-                            return Flash.bar(
-                                controller: controller,
-                                backgroundColor: Colors.grey.withOpacity(0.8),
-                                position: FlashPosition.bottom,
-                                enableDrag: true,
-                                horizontalDismissDirection:
-                                    HorizontalDismissDirection.horizontal,
-                                margin: const EdgeInsets.all(8),
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(8)),
-                                forwardAnimationCurve: Curves.easeOutBack,
-                                reverseAnimationCurve: Curves.easeOutBack,
-                                child: FlashBar(
-                                  message: Text(failure.map(
-                                    cancelledByUser: (_) => 'Cancelled',
-                                    serverError: (_) => 'Server error',
-                                    emailAlreadyInUse: (_) =>
-                                        'Email already in use',
-                                    invalidEmailAndPasswordCombination: (_) =>
-                                        'Invalid email and password combination',
-                                  )),
-                                ));
-                          })
-                    },
-                (_) => null));
+                          await showFlash(
+                              context: context,
+                              duration: const Duration(seconds: 4),
+                              builder: (context, controller) {
+                                return Flash.bar(
+                                    controller: controller,
+                                    backgroundColor:
+                                        Colors.grey.withOpacity(0.8),
+                                    position: FlashPosition.bottom,
+                                    enableDrag: true,
+                                    horizontalDismissDirection:
+                                        HorizontalDismissDirection.horizontal,
+                                    margin: const EdgeInsets.all(8),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(8)),
+                                    forwardAnimationCurve: Curves.easeOutBack,
+                                    reverseAnimationCurve: Curves.easeOutBack,
+                                    child: FlashBar(
+                                      message: Text(failure.map(
+                                        cancelledByUser: (_) => 'Cancelled',
+                                        serverError: (_) => 'Server error',
+                                        emailAlreadyInUse: (_) =>
+                                            'Email already in use',
+                                        invalidEmailAndPasswordCombination: (_) =>
+                                            'Invalid email and password combination',
+                                      )),
+                                    ));
+                              })
+                        }, (_) {
+                  AutoRouter.of(context).replaceNamed('/notes');
+                  // authenticated state 도 바꿔줘야함
+                  // 하지만 위의 BlocConsumer를 확인해보면 SignInFormBloc을 구독하고 있기 때문에 AuthBloc의 authenticated로 바꿔줄 수 없음
+                  // 다음 방법 사용
+                  context
+                      .read<AuthBloc>()
+                      .add(const AuthEvent.authCheckRequested());
+                }));
       },
       builder: (context, state) {
         return Form(
