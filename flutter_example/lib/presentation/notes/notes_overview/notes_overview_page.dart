@@ -7,6 +7,8 @@ import 'package:flutter_example/application/notes/note_actor/note_actor_bloc.dar
 import 'package:flutter_example/application/notes/note_watcher/note_watcher_bloc.dart';
 import 'package:flutter_example/presentation/injection.dart';
 import 'package:flutter_example/presentation/notes/notes_overview/widgets/notes_overview_body.dart';
+import 'package:flutter_example/presentation/notes/notes_overview/widgets/uncompleted_switch.dart';
+import 'package:flutter_example/presentation/routes/router.gr.dart';
 
 class NotesOverviewPage extends StatelessWidget {
   @override
@@ -72,16 +74,11 @@ class NotesOverviewPage extends StatelessWidget {
                 // TODO: Implement function
               },
             ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.indeterminate_check_box),
-                onPressed: () {},
-              )
-            ],
+            actions: [UnCompletedSwitch()],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              // TODO: Navigate to NoteFormPage
+              AutoRouter.of(context).push(NoteFormRoute());
             },
             child: const Icon(Icons.add),
           ),

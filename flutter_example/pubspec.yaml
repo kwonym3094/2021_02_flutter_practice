@@ -23,19 +23,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  another_flushbar: ^1.10.20
   auto_route: ^2.2.0
   cloud_firestore: ^2.1.0
-  cupertino_icons: ^1.0.0
-  dartz: ^0.10.0-nullsafety.1
-  firebase_auth: ^1.1.3
-  firebase_core: ^1.1.0
-  flash: ^1.5.2+1
+  cupertino_icons: ^1.0.3
+  dartz: ^0.10.0-nullsafety.2
+  firebase_auth: ^1.1.4
+  firebase_core: ^1.1.1
+  flash: ^1.5.2+2
   flutter_bloc: ^7.0.0
-  freezed_annotation: ^0.14.1
-  get_it: ^6.1.0
-  google_sign_in: ^5.0.2
-  injectable: ^1.3.0
+  flutter_hooks: ^0.17.0
+  freezed_annotation: ^0.14.2
+  get_it: ^7.1.3
+  google_sign_in: ^5.0.3
+  injectable: ^1.4.0
   json_annotation: ^4.0.1
   kt_dart: ^0.9.0
   rxdart: ^0.27.0
@@ -45,12 +45,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  auto_route_generator: ^2.0.1
-  build_runner: ^2.0.2
-  freezed: ^0.14.1+3
+  auto_route_generator: ^2.1.0
+  build_runner: ^2.0.3
+  freezed: ^0.14.2
   import_sorter: ^4.5.1
-  injectable_generator: ^1.3.0
-  json_serializable: ^4.0.0
+  injectable_generator: ^1.4.0
+  json_serializable: ^4.1.2
   lint: ^1.5.3
 
 # For information on the generic Dart part of this file, see the

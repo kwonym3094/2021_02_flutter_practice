@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_example/application/notes/note_actor/note_actor_bloc.dart';
 import 'package:flutter_example/domain/notes/note.dart';
 import 'package:flutter_example/domain/notes/todo_item.dart';
+import 'package:flutter_example/presentation/routes/router.gr.dart';
 import 'package:kt_dart/collection.dart';
 
 class NoteCard extends StatelessWidget {
@@ -19,7 +21,7 @@ class NoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // TODO : Implement navigation
+        AutoRouter.of(context).push(NoteFormRoute(editedNote: note));
       },
       onLongPress: () {
         final noteActorBloc = context.read<NoteActorBloc>();
@@ -103,13 +105,13 @@ class TodoDisplay extends StatelessWidget {
           Icon(
             Icons.check_box,
             color: Theme.of(context).accentColor,
-          )
-        else
+          ),
+        if (!todo.done)
           Icon(
             Icons.check_box_outline_blank,
             color: Theme.of(context).disabledColor,
           ),
-        Text(todo.name.getOrCrash())
+        Text(todo.name.getOrCrash()),
       ],
     );
   }
