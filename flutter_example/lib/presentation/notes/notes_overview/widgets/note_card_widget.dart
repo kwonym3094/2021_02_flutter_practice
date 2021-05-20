@@ -82,8 +82,10 @@ class NoteCard extends StatelessWidget {
                 child: const Text('CANCEL'),
               ),
               TextButton(
-                onPressed: () =>
-                    noteActorBloc.add(NoteActorEvent.deleted(note)),
+                onPressed: () {
+                  noteActorBloc.add(NoteActorEvent.deleted(note));
+                  Navigator.pop(context);
+                },
                 child: const Text('DELETE'),
               )
             ],

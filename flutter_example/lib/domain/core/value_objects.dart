@@ -57,10 +57,10 @@ class UniqueId extends ValueObject<String> {
   }
 
   // 이미 unique 한 값을 받았을 때(ex. email id)
-  factory UniqueId.fromUniqueString(String uniqueId) {
+  factory UniqueId.fromUniqueString(String? uniqueId) {
     assert(uniqueId != null);
     return UniqueId._(
-      right(uniqueId),
+      right(uniqueId!),
     );
   }
 

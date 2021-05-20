@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_example/application/notes/note_form/note_form_bloc.dart';
 import 'package:flutter_example/domain/notes/note.dart';
 import 'package:flutter_example/presentation/injection.dart';
+import 'package:flutter_example/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:flutter_example/presentation/routes/router.gr.dart';
 
 class NoteFormPage extends StatelessWidget {
@@ -99,8 +100,8 @@ class SavingInProgressOverlay extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircularProgressIndicator(),
-              SizedBox(
+              const CircularProgressIndicator(),
+              const SizedBox(
                 height: 8,
               ),
               Text('Saving...',
@@ -140,6 +141,22 @@ class NoteFormPageScaffold extends StatelessWidget {
             },
           )
         ],
+      ),
+      body: BlocBuilder<NoteFormBloc, NoteFormState>(
+        buildWhen: (previous, current) =>
+            previous.showErrorMessage != current.showErrorMessage,
+        builder: (context, state) {
+          return Form(
+            autovalidateMode: state.showErrorMessage,
+            child: SingleChildScrollView(
+              child: Column(
+                children: const [
+                  BodyField(),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

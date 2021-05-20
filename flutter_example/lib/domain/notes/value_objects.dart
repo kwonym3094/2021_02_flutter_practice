@@ -14,11 +14,11 @@ class NoteBody extends ValueObject<String> {
 
   static const maxLength = 1000;
 
-  factory NoteBody(String input) {
+  factory NoteBody(String? input) {
     assert(input != null);
 
     // 2개를 validating 해야할 때는 어떻게 해야하는지 확인
-    return NoteBody._(validateMaxStringLength(input, maxLength).flatMap(
+    return NoteBody._(validateMaxStringLength(input!, maxLength).flatMap(
         // (valueFromPreviousF) => validateStringNotEmpty(valueFromPreviousF)));
         validateStringNotEmpty)); // 위를 짧게
     // flatMap : 이전 함수로 부터 value 를 받아서 다음 함수를 실행 = binding
@@ -38,10 +38,10 @@ class TodoName extends ValueObject<String> {
 
   static const maxLength = 30;
 
-  factory TodoName(String input) {
+  factory TodoName(String? input) {
     assert(input != null);
 
-    return TodoName._(validateMaxStringLength(input, maxLength)
+    return TodoName._(validateMaxStringLength(input!, maxLength)
         .flatMap(validateStringNotEmpty)
         .flatMap(validateSingleLine));
   }
@@ -63,12 +63,12 @@ class NoteColor extends ValueObject<Color> {
     Color(0xfffffdd0),
   ];
 
-  factory NoteColor(Color input) {
+  factory NoteColor(Color? input) {
     assert(input != null);
 
     return NoteColor._(
       // transparency 없이 안전처리
-      right(makeColorOpaque(input)),
+      right(makeColorOpaque(input!)),
     );
   }
 }
@@ -81,11 +81,11 @@ class List3<T> extends ValueObject<KtList<T>> {
 
   static const maxLength = 3;
 
-  factory List3(KtList<T> input) {
+  factory List3(KtList<T>? input) {
     assert(input != null);
 
     return List3._(
-      validateMaxListLength(input, maxLength),
+      validateMaxListLength(input!, maxLength),
     );
   }
 
