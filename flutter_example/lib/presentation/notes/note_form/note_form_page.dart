@@ -152,6 +152,7 @@ class NoteFormPageScaffold extends StatelessWidget {
               child: Column(
                 children: const [
                   BodyField(),
+                  ColorField(),
                 ],
               ),
             ),
