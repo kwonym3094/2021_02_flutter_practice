@@ -8,6 +8,7 @@ import 'package:flutter_example/application/notes/note_form/note_form_bloc.dart'
 import 'package:flutter_example/domain/notes/note.dart';
 import 'package:flutter_example/presentation/injection.dart';
 import 'package:flutter_example/presentation/notes/note_form/widgets/body_field_widget.dart';
+import 'package:flutter_example/presentation/notes/note_form/widgets/color_field_widget.dart';
 import 'package:flutter_example/presentation/routes/router.gr.dart';
 
 class NoteFormPage extends StatelessWidget {
@@ -36,7 +37,7 @@ class NoteFormPage extends StatelessWidget {
                             controller: controller,
                             backgroundColor: Colors.grey.withOpacity(0.8),
                             position: FlashPosition.bottom,
-                            enableDrag: true,
+                            enableVerticalDrag: true,
                             horizontalDismissDirection:
                                 HorizontalDismissDirection.horizontal,
                             margin: const EdgeInsets.all(8),
@@ -45,7 +46,7 @@ class NoteFormPage extends StatelessWidget {
                             forwardAnimationCurve: Curves.easeOutBack,
                             reverseAnimationCurve: Curves.easeOutBack,
                             child: FlashBar(
-                              message: Text(failure.map(
+                              content: Text(failure.map(
                                 unexpected: (_) =>
                                     'Unexpected error occured, please contact support.',
                                 insufficientPermission: (_) =>

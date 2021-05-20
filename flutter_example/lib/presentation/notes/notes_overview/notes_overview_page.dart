@@ -42,7 +42,7 @@ class NotesOverviewPage extends StatelessWidget {
                             controller: controller,
                             backgroundColor: Colors.grey.withOpacity(0.8),
                             position: FlashPosition.bottom,
-                            enableDrag: true,
+                            enableVerticalDrag: true,
                             horizontalDismissDirection:
                                 HorizontalDismissDirection.horizontal,
                             margin: const EdgeInsets.all(8),
@@ -51,7 +51,7 @@ class NotesOverviewPage extends StatelessWidget {
                             forwardAnimationCurve: Curves.easeOutBack,
                             reverseAnimationCurve: Curves.easeOutBack,
                             child: FlashBar(
-                              message: Text(state.noteFailure.map(
+                              content: Text(state.noteFailure.map(
                                 unexpected: (_) =>
                                     'Unexpected error occured while deleting, please contact support.',
                                 insufficientPermission: (_) =>

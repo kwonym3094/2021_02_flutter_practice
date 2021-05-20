@@ -37,7 +37,7 @@ class SignInForm extends StatelessWidget {
                                     backgroundColor:
                                         Colors.grey.withOpacity(0.8),
                                     position: FlashPosition.bottom,
-                                    enableDrag: true,
+                                    enableVerticalDrag: true,
                                     horizontalDismissDirection:
                                         HorizontalDismissDirection.horizontal,
                                     margin: const EdgeInsets.all(8),
@@ -46,7 +46,7 @@ class SignInForm extends StatelessWidget {
                                     forwardAnimationCurve: Curves.easeOutBack,
                                     reverseAnimationCurve: Curves.easeOutBack,
                                     child: FlashBar(
-                                      message: Text(failure.map(
+                                      content: Text(failure.map(
                                         cancelledByUser: (_) => 'Cancelled',
                                         serverError: (_) => 'Server error',
                                         emailAlreadyInUse: (_) =>
