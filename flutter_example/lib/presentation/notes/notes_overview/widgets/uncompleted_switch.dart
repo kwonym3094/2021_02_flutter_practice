@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 // HookWidget : 그냥 bool 값을 할당하는 대신 useState(false); 이런식으로 넣어서 활용할 수 있음.
 //  setState 대신 활용할 수 있어서 코드가 줄어듬
 class UnCompletedSwitch extends HookWidget {
+  const UnCompletedSwitch({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final toggleState = useState(false);

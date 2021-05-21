@@ -6,6 +6,7 @@ import 'package:flutter_example/presentation/notes/notes_overview/widgets/error_
 import 'package:flutter_example/presentation/notes/notes_overview/widgets/note_card_widget.dart';
 
 class NotesOverviewBody extends StatelessWidget {
+  const NotesOverviewBody({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NoteWatcherBloc, NoteWatcherState>(

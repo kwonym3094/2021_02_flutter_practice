@@ -32,7 +32,7 @@ class AppRouter extends _i1.RootStackRouter {
     NotesOverviewRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i5.NotesOverviewPage();
+          return const _i5.NotesOverviewPage();
         }),
     NoteFormRoute.name: (routeData) => _i1.CupertinoPageX<dynamic>(
         routeData: routeData,

@@ -11,6 +11,7 @@ import 'package:flutter_example/presentation/notes/notes_overview/widgets/uncomp
 import 'package:flutter_example/presentation/routes/router.gr.dart';
 
 class NotesOverviewPage extends StatelessWidget {
+  const NotesOverviewPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -74,7 +75,7 @@ class NotesOverviewPage extends StatelessWidget {
                 // TODO: Implement function
               },
             ),
-            actions: [UnCompletedSwitch()],
+            actions: const [UnCompletedSwitch()],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -82,7 +83,7 @@ class NotesOverviewPage extends StatelessWidget {
             },
             child: const Icon(Icons.add),
           ),
-          body: NotesOverviewBody(),
+          body: const NotesOverviewBody(),
         ),
       ),
     );

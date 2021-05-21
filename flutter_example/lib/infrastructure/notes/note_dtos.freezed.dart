@@ -48,7 +48,10 @@ mixin _$NoteDto {
   @JsonKey(ignore: true)
   String? get id => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
-  int get color => throw _privateConstructorUsedError;
+  int get color =>
+      throw _privateConstructorUsedError; // 29 : nested list 안에 nested list가 들어오면서 Map으로 변환처리가 되지 않았음
+//  - 어떻게 해줘야하나?
+//  - 간단한 설정 하나 추가 => build.yaml
   List<TodoItemDto> get todos =>
       throw _privateConstructorUsedError; // 나중에 바꿔야할 값 : firebase의 서버 시간을 따라감
   dynamic get serverTimeStamp => throw _privateConstructorUsedError;
@@ -187,7 +190,9 @@ class _$_NoteDto extends _NoteDto {
   final String body;
   @override
   final int color;
-  @override
+  @override // 29 : nested list 안에 nested list가 들어오면서 Map으로 변환처리가 되지 않았음
+//  - 어떻게 해줘야하나?
+//  - 간단한 설정 하나 추가 => build.yaml
   final List<TodoItemDto> todos;
   @override // 나중에 바꿔야할 값 : firebase의 서버 시간을 따라감
   final dynamic serverTimeStamp;
@@ -252,7 +257,9 @@ abstract class _NoteDto extends NoteDto {
   String get body => throw _privateConstructorUsedError;
   @override
   int get color => throw _privateConstructorUsedError;
-  @override
+  @override // 29 : nested list 안에 nested list가 들어오면서 Map으로 변환처리가 되지 않았음
+//  - 어떻게 해줘야하나?
+//  - 간단한 설정 하나 추가 => build.yaml
   List<TodoItemDto> get todos => throw _privateConstructorUsedError;
   @override // 나중에 바꿔야할 값 : firebase의 서버 시간을 따라감
   dynamic get serverTimeStamp => throw _privateConstructorUsedError;

@@ -21,6 +21,9 @@ abstract class NoteDto implements _$NoteDto {
     @JsonKey(ignore: true) String? id,
     required String body,
     required int color,
+    // 29 : nested list 안에 nested list가 들어오면서 Map으로 변환처리가 되지 않았음
+    //  - 어떻게 해줘야하나?
+    //  - 간단한 설정 하나 추가 => build.yaml
     required List<TodoItemDto> todos,
     // 나중에 바꿔야할 값 : firebase의 서버 시간을 따라감
     required dynamic serverTimeStamp,

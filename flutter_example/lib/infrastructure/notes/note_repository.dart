@@ -105,6 +105,7 @@ class NoteRepository implements INoteRepository {
       final userDoc = await _firestore.userDocument();
       final noteDto = NoteDto.fromDomain(note);
 
+      // 29 : 다음 부분에서 에러가 발생함 => JsonSerializable을 사용할 때면 발생할 수 있는 에러
       await userDoc.noteCollection.doc(noteDto.id).update(noteDto.toJson());
 
       return right(unit);
